@@ -11,6 +11,7 @@
     {{-- <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/frontend/favicon.png')}}"> --}}
 
     <!-- all css here -->
+
     <link rel="stylesheet" href="{{asset('css/frontend/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/frontend/magnific-popup.css')}}">
     <link rel="stylesheet" href="{{asset('css/frontend/animate.css')}}">
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="{{asset('css/frontend/bundle.css')}}">
     <link rel="stylesheet" href="{{asset('css/frontend/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/frontend/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('css/frontend/font-awesome.min.css')}}">
     <script src="{{asset('js/frontend/vendor/modernizr-2.8.3.min.js')}}"></script>
     <style>
 
@@ -167,6 +169,7 @@
     <script src="{{asset('js/frontend/owl.carousel.min.js')}}"></script>
     <script src="{{asset('js/frontend/plugins.js')}}"></script>
     <script src="{{asset('js/frontend/main.js')}}"></script>
+    <script src="{{asset('js/custom.js')}}"></script>
 </body>
 
 </html>

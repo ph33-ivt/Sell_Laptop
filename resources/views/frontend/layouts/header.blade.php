@@ -9,11 +9,28 @@
             </div>
             <div class="electronics-login-register">
                 <ul>
-                    <li><a href="{{route('user.formlogin')}}"><i class="pe-7s-users"></i>Login</a></li>
-                    <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i class="pe-7s-repeat"></i>Compare</a></li>
+
+                    {{-- <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i class="pe-7s-repeat"></i>Compare</a></li>
                     <li><a href="wishlist.html"><i class="pe-7s-like"></i>Wishlist</a></li>
                     <li><a href="#"><i class="pe-7s-flag"></i>US</a></li>
-                    <li><a class="border-none" href="#"><span>$</span>USD</a></li>
+                    <li><a class="border-none" href="#"><span>$</span>USD</a></li> --}}
+
+                    @if(empty(Auth::check()) )
+                    <li><a href="{{route('login')}}"><i class="pe-7s-user"></i>Login</a></li>
+                    <li><a href="{{route('register')}}"><i class="pe-7s-add-user"></i>Register</a></li>
+                    @else
+                    <li><a href="{{ route('account') }}"><i class="pe-7s-users"></i>{{Auth::user()->name}}</a></li>
+                    <li>
+                    <a class="" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                       <i class="pe-7s-angle-right-circle"></i>Logout</a></li>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    </li>
+                    @endif
                 </ul>
             </div>
         </div>
