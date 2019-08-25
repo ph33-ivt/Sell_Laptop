@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\BackEnd;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class RoleEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,19 +24,21 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'=> 'required|max:35|email',
-            'password' => 'required|min:4',
+            'name' => 'required|min:4',
+            'description' => 'required',
+            'permissions' => 'required'
 
         ];
     }
+
     public function messages()
     {
         return [
-            'email.email' => 'Enter email style email',
-            'email.required' => 'a email is required',
-            'email.max' => 'Enter email maximum 35 character',
-            'password.required' => 'password is required',
-            'password.min' => 'Enter password minimum 4 character ',
+            'name.required' => 'Enter name required',
+            'name.min' => 'Enter name minimum  4 character',
+            'description.required' => 'a description is required',
+            'permissions.required' => 'a permission is required',
+
         ];
     }
 }

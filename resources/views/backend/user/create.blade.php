@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('title')
-AdminLTE 3 | Dashboard
+Create User | Dashboard
 @endsection
 
 @section('content')
@@ -21,15 +21,15 @@ AdminLTE 3 | Dashboard
                         <div class="card-body">
                             <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="name" class="form-control" id="name" name="name" placeholder="Enter name" value="" required>
+                            <input type="name" class="form-control" id="name" name="name" placeholder="Enter name" value="{{ old('name') }}" required>
                             </div>
                             <div class="form-group">
                             <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" value="" required>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" value="{{ old('email') }}" required>
                             </div>
                             <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="{{ old('password')}}" required>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="{{old('password')}}" required>
                             </div>
                             {{-- <label >Confirm Password</label>
                             <input type="password" name="password_confirmation" class="form-control"  placeholder="Enter Confirm Password" value="{{old('confirm_password')}}"> --}}
@@ -45,7 +45,7 @@ AdminLTE 3 | Dashboard
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Create</button>
                         </div>
                         </form>
                     </div>

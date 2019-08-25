@@ -1,11 +1,9 @@
 @extends('backend.layouts.app')
 
 @section('title')
-AdminLTE 3 | Dashboard
+Laptop Shop Demo | Dashboard
 @endsection
 
 @section('content')
-
-
 @endsection
 

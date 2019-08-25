@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\BackEnd;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\BackEnd\UserAddRequest;
+use App\Http\Requests\BackEnd\UserCreateRequest;
+use App\Http\Requests\BackEnd\UserEditRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Role;
+use DB;
 
 
 class UserController extends Controller
@@ -18,6 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewindex',User::class);
         $users = User::all();
         return view('backend.user.index',compact('users'));
     }
@@ -29,6 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->authorize('create',User::class);
         $listRoles = Role::all();
         return view('backend.user.create',compact('listRoles'));
     }
@@ -39,13 +44,14 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserAddRequest $request)
+    public function store(UserCreateRequest $request)
     {
+        $this->authorize('create',User::class);
         $data = $request->except('_token');
         $data['password'] = bcrypt($request->password);
         $user = User::create($data);
         $user->roles()->attach($request->roles);
-        return redirect()->route('user.index');
+        return redirect()->route('admin.user.index')->with('success','Created user success');
     }
 
     /**
@@ -67,7 +73,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->authorize('update',User::class);
+        $user = User::find($id);
+        $listRoles = Role::all();
+        //selected Role of User login
+        //$userOfRoles = \DB::table('role_user')->where('user_id',$id)->get()->pluck('role_id');
+        $userOfRoles = $user->roles()->pluck('role_id');
+        return view('backend.user.edit',compact('user','listRoles','userOfRoles'));
     }
 
     /**
@@ -77,9 +89,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserEditRequest $request, $id)
     {
-        //
+
+        //Update table user
+        $this->authorize('update',User::class);
+        $data = $request->only('name','email','password');
+        $data['password'] = bcrypt($request->password);
+        $user = User::find($id);
+        $user->update($data);
+        //Update table role_user
+        DB::table('role_user')->where('user_id',$id)->delete();//delete bảng phụ theo user_id sau đó thêm vào lại
+        $user->roles()->attach($request->roles);
+        //cách 3
+        // if (isset($request->roles)) {
+        //     $user->roles()->sync($request->roles);
+        // } else {
+        //     $user->roles()->sync(array());
+        // }
+        return redirect()->route('admin.user.index')->with('success','Update user success');
     }
 
     /**
@@ -90,6 +118,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        return dd($id);
+        $this->authorize('delete',User::class);
+        $user = User::find($id);
+        $user->delete();
+        //Delete user of Role in table role_user
+        $user->roles()->detach();
+        return redirect()->route('admin.user.index')->with('success','Delete user success');
     }
 }

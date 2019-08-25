@@ -19,8 +19,10 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check() && Auth::user()->can('isAdmin',5)) {
             return redirect()->route('admin.dashboard');
+        }elseif(Auth::guard($guard)->check())
+        {
+         return redirect()->route('index');
         }
-
         return $next($request);
     }
 }

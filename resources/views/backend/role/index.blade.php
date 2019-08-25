@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('title')
-Laptop Shop | List User
+Laptop Shop | Dashboard
 @endsection
 
 @section('content')
@@ -9,42 +9,42 @@ Laptop Shop | List User
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">List User</h3>
+          <h3 class="card-title">List Role</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
             @include('messages.msg')
-            @can('create', App\User::class)
-            <a name="" id="" class="btn btn-primary mb-3" href="{{ route('admin.user.create') }}" role="button">Create User</a>
+           @can('create',App\Role::class)
+            <a name="" id="" class="btn btn-primary mb-2" href="{{ route('admin.role.create') }}" role="button">Create Role</a>
             @endcan
           <table id="example2" class="table table-bordered table-hover">
             <thead>
             <tr>
               <th>No</th>
               <th>Name</th>
-              <th>Email</th>
+              <th>description</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+                @foreach ($roles as $role)
             <tr>
               <td>{{$loop->index +1}}</td>
-                <td>{{$user->name}}</td>
-                <td>{{$user->email}}</td>
+                <td>{{$role->name}}</td>
+                <td>{{$role->description}}</td>
             <td>
-                @can('update', App\User::class)
-                <a href="{{route('admin.user.edit', $user->id)}}"><i class="far fa-edit"></i></a>
+                @can('update',App\Role::class)
+                <a href="{{route('admin.role.edit', $role->id)}}"><i class="far fa-edit"></i></a>
                 @endcan
             </td>
             <td>
-                <form id="delete-form-{{$user->id}}" action="{{route('admin.user.destroy',$user->id)}}" style="display:none" method="post">
+                <form id="delete-form-{{$role->id}}" action="{{route('admin.role.destroy',$role->id)}}" style="display:none" method="POST">
                     @csrf
                     @method('DELETE')
                 </form>
-                @can('delete', App\User::class)
-                <a href="" onclick=" event.preventDefault(); document.getElementById('delete-form-{{$user->id}}').submit();"><i class="far fa-trash-alt"></i></a>
+                @can('delete',App\Role::class)
+                <a href="" onclick=" event.preventDefault(); document.getElementById('delete-form-{{$role->id}}').submit();"><i class="far fa-trash-alt"></i></a>
                 @endcan
             </td>
             </tr>

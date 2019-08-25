@@ -3,79 +3,76 @@
 namespace App\Policies;
 
 use App\User;
-use App\Role;
 use App\Permission;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Auth;
 
-
-class RolePolicy
+class PermissionPolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any roles.
+     * Determine whether the user can view any permissions.
      *
      * @param  \App\User  $user
      * @return mixed
      */
     public function viewAny(User $user)
     {
-
+        //
     }
 
     /**
-     * Determine whether the user can view the role.
+     * Determine whether the user can view the permission.
      *
      * @param  \App\User  $user
-     * @param  \App\Role  $role
+     * @param  \App\Permission  $permission
      * @return mixed
      */
     public function view(User $user)
     {
-
+        //
     }
 
     /**
-     * Determine whether the user can create roles.
+     * Determine whether the user can create permissions.
      *
      * @param  \App\User  $user
      * @return mixed
      */
     public function create(User $user)
     {
-       return $this->author($user,9);
+        return $this->author($user,13);
     }
 
     /**
-     * Determine whether the user can update the role.
+     * Determine whether the user can update the permission.
      *
      * @param  \App\User  $user
-     * @param  \App\Role  $role
+     * @param  \App\Permission  $permission
      * @return mixed
      */
     public function update(User $user)
     {
-       return $this->author($user,10);
+        return $this->author($user,14);
     }
 
     /**
-     * Determine whether the user can delete the role.
+     * Determine whether the user can delete the permission.
      *
      * @param  \App\User  $user
-     * @param  \App\Role  $role
+     * @param  \App\Permission  $permission
      * @return mixed
      */
     public function delete(User $user)
     {
-       return $this->author($user,11);
+        return $this->author($user,15);
     }
 
     /**
-     * Determine whether the user can restore the role.
+     * Determine whether the user can restore the permission.
      *
      * @param  \App\User  $user
-     * @param  \App\Role  $role
+     * @param  \App\Permission  $permission
      * @return mixed
      */
     public function restore(User $user)
@@ -84,10 +81,10 @@ class RolePolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the role.
+     * Determine whether the user can permanently delete the permission.
      *
      * @param  \App\User  $user
-     * @param  \App\Role  $role
+     * @param  \App\Permission  $permission
      * @return mixed
      */
     public function forceDelete(User $user)
@@ -97,7 +94,7 @@ class RolePolicy
 
     public function viewindex(User $user)
     {
-        return $this->author($user,8);
+        return $this->author($user,12);
     }
 
     public function author(User $user,$p_id)

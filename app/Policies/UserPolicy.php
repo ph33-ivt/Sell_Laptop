@@ -4,12 +4,9 @@ namespace App\Policies;
 
 use App\User;
 use App\Role;
-use App\Permission;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Auth;
 
-
-class RolePolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -21,7 +18,7 @@ class RolePolicy
      */
     public function viewAny(User $user)
     {
-
+        //
     }
 
     /**
@@ -33,7 +30,7 @@ class RolePolicy
      */
     public function view(User $user)
     {
-
+        return $this->author($user,4);
     }
 
     /**
@@ -44,7 +41,7 @@ class RolePolicy
      */
     public function create(User $user)
     {
-       return $this->author($user,9);
+        return $this->author($user,5);
     }
 
     /**
@@ -56,7 +53,7 @@ class RolePolicy
      */
     public function update(User $user)
     {
-       return $this->author($user,10);
+        return $this->author($user,6);
     }
 
     /**
@@ -68,7 +65,7 @@ class RolePolicy
      */
     public function delete(User $user)
     {
-       return $this->author($user,11);
+        return $this->author($user,7);
     }
 
     /**
@@ -97,7 +94,7 @@ class RolePolicy
 
     public function viewindex(User $user)
     {
-        return $this->author($user,8);
+        return $this->author($user,3);
     }
 
     public function author(User $user,$p_id)

@@ -4,7 +4,7 @@ namespace App\Http\Requests\BackEnd;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserAddRequest extends FormRequest
+class UserEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,20 +27,22 @@ class UserAddRequest extends FormRequest
             'name' => 'required|min:4',
             'email'=> 'required|max:35|email',
             'password' => 'required|min:6',
+            'roles' => 'required'
 
         ];
     }
+
     public function messages()
     {
         return [
             'name.required' => 'Enter name required',
-            'name.min' => 'phải nhập tên tối thiểu 4 ký tự',
-            'email.email' => 'Email phải nhập kiểu email ',
-            'email.required' => 'Bắt buộc nhập Email',
-            'email.max' => 'Nhập email tối đa 35 ký tự',
-            'password.required' => 'Bắt buộc nhập password',
-            'password.min' => 'Nhập password tối thiểu 6 ký tự',
-
+            'name.min' => 'nter name minimum  4 character',
+            'email.email' => 'Enter email style email ',
+            'email.required' => 'a email is required',
+            'email.max' => 'Enter name maximum 35 character',
+            'password.required' => 'a password is required',
+            'password.min' => 'Enter password minimum  4 character',
+            'roles.required' => 'a role is required'
         ];
     }
 }
