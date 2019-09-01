@@ -21,10 +21,12 @@ class CreateOrdersTable extends Migration
             $table->string('country');
             $table->string('firstname');
             $table->string('lastname');
+            $table->string('address');
             $table->string('city');
             $table->string('state')->nullable();
             $table->string('zip')->nullable();
             $table->string('phone');
+            $table->double('grand_total');
             $table->string('payment_method');
             $table->string('status');
             $table->timestamps();

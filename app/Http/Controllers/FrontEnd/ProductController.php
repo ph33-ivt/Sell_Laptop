@@ -9,9 +9,11 @@ use App\Product;
 use App\ProductsImages;
 use Auth;
 use App\Cart;
+use App\Order;
 use Illuminate\Support\Facades\Session;
 use DB;
 use Symfony\Component\CssSelector\Parser\Shortcut\ElementParser;
+use App\OrderDetail;
 
 
 class ProductController extends Controller
@@ -23,6 +25,7 @@ class ProductController extends Controller
         $productDetailsImageall = ProductsImages::where('product_id',$id)->pluck('image');
         return view('frontend.layoutsproduct.details',compact('productDetails','productDetailsImage','productDetailsImageall'));
     }
+
     public function addcart(Request $request, $id)
     {
         $data = $request->except('_token');
@@ -41,9 +44,7 @@ class ProductController extends Controller
             $data['session_id'] = $session_id;
             }
             $data['session_id'] = $session_id;
-
             $product = Product::find($id);
-
             //check if item have in table cart of user
             if(empty(Auth::check())){
             $productCount = \DB::table('carts')->where(['product_id'=>$data['product_id'],'session_id' => $data['session_id']])->count();
@@ -84,12 +85,10 @@ class ProductController extends Controller
           }
           //$productDetailsImage = ProductsImages::where('product_id',$id)->pluck('image')->first();
         return view('frontend.layoutsproduct.cart',compact('userCarts'));
-
     }
 
     public function deletecart($id)
     {
-
         $table = DB::table('carts')->where('id', '=', $id)->delete();
         return redirect()->back()->with('success','Product has been removed in Cart');
     }
@@ -118,5 +117,47 @@ class ProductController extends Controller
         //get cart table of user login
         $userCarts = DB::table('carts')->where(['user_email' => $user_email])->get();
         return view('frontend.layoutsproduct.checkout',compact('user_email','user_id','userCarts'));
+    }
+
+    public function placeorder(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $user_email = Auth::user()->email;
+        //$order_id = \DB::table('orders')->where('user_id',$user_id)->first();
+        $data = $request->only('country','firstname','lastname','company','address','city','state','zip','phone','payment_method','grand_total');
+        $data['user_id'] = $user_id;
+        $data['user_email'] = $user_email;
+        $data['status'] ='';
+
+        //dd($data);
+        //Insert order in order table
+        Order::insert($data);
+
+        //Get order_id in table order
+        $order_id =  DB::getPdo()->lastInsertId();
+        $discount = 0;
+        //dd($order_id);
+        $userCarts = DB::table('carts')->where(['user_email' => $user_email])->get();
+       //dd($userCarts);
+        foreach($userCarts as $product) {
+            OrderDetail::create([
+                'order_id' => $order_id,
+                'product_id' => $product->product_id,
+                'product_name' => $product->product_name,
+                'price' => $product->price,
+                'quantity' => $product->quantity,
+                'discount' => $discount,
+            ]);
+        }
+        Session::put('order_id',$order_id);
+        Session::put('grand_total',$data['grand_total']);
+        return redirect()->route('user.thanks');
+        //delete  userCarts in Cart table
+       // $userCarts = DB::table('carts')->where(['user_email' => $user_email])->delete();
+    }
+
+    public function thanks()
+    {
+        return view('frontend.layoutsproduct.thanks');
     }
 }

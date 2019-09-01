@@ -27,7 +27,6 @@ Route::group(['prefix' => 'admin',
              ],
              function () {
             Route::get('/dashboard','HomeController@dashboard')->name('dashboard');
-
             Route::resource('user', 'UserController');
             Route::resource('role', 'RoleController');
             Route::resource('permission', 'PermissionController');
@@ -49,10 +48,22 @@ Route::group(['prefix' => 'user',
             Route::get('cart','ProductController@cart')->name('cart');
             Route::put('cart/{id}/update', 'ProductController@updatecart')->name('update.cart');
             Route::get('cart/{id}/delete','ProductController@deletecart')->name('delete.cart');
-            Route::get('checkout','ProductController@checkout')->name('checkout');
-            Route::post('placeorder','ProductController@placeorder')->name('placeorder');
      // Route::get('/product','ProductController')->name('product');
 });
+
+// All Route after login
+Route::group(['prefix' => 'user',
+            'namespace' => 'FrontEnd',
+            'as' => 'user.',
+            'middleware' => 'auth',
+             ],
+        function () {
+            Route::get('checkout','ProductController@checkout')->name('checkout');
+            Route::post('placeorder','ProductController@placeorder')->name('placeorder');
+            Route::get('/thanks','ProductController@thanks')->name('thanks');
+});
+
+
 
 //Login and logout with user
 

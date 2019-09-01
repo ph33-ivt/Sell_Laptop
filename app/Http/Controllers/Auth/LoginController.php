@@ -7,7 +7,9 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Symfony\Component\HttpFoundation\Request;
 use App\Http\Requests\LoginRequest;
 use Auth;
+use DB;
 use App\Role;
+use Illuminate\Support\Facades\Session;
 class LoginController extends Controller
 {
     /*
@@ -58,7 +60,14 @@ class LoginController extends Controller
         }
         elseif(Auth::attempt($data))
         {
-            return redirect()->route('index');
+            if(!empty(Session::get('session_id'))){
+                $session_id = Session::get('session_id');
+                \DB::table('carts')->where('session_id',$session_id)->update(['user_email' => $data['email']]);
+                return redirect()->route('user.cart');
+            }else{
+                return redirect()->route('index');
+            }
+
         }
         return redirect()->back()->with('error','Email or password incorrect ');
 
@@ -66,7 +75,7 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        //check user not admin
+        //check user admin
         if(Auth::check() && Auth::user()->can('isAdmin',5))
         {
             $this->guard()->logout();
