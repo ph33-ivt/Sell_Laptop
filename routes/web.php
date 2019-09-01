@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -31,20 +31,27 @@ Route::group(['prefix' => 'admin',
             Route::resource('user', 'UserController');
             Route::resource('role', 'RoleController');
             Route::resource('permission', 'PermissionController');
-
-            //Route::get('admin-login','Auth\LoginController@showLoginForm')->name('admin.login');
+            Route::resource('category', 'CategoryController');
+            Route::resource('product', 'CategoryController');
 });
 
  //User
 Route::get('/account','Auth\LoginController@account')->name('account');
-Route::get('/index','IndexController@index')->name('index');
+Route::get('/','IndexController@index')->name('index');
+
 Route::group(['prefix' => 'user',
             'namespace' => 'FrontEnd',
             'as' => 'user.'
              ],
         function () {
-
-
+            Route::get('product/{id}','ProductController@details')->name('product.details');
+            Route::post('addtocart/{id}','ProductController@addcart')->name('add.cart');
+            Route::get('cart','ProductController@cart')->name('cart');
+            Route::put('cart/{id}/update', 'ProductController@updatecart')->name('update.cart');
+            Route::get('cart/{id}/delete','ProductController@deletecart')->name('delete.cart');
+            Route::get('checkout','ProductController@checkout')->name('checkout');
+            Route::post('placeorder','ProductController@placeorder')->name('placeorder');
+     // Route::get('/product','ProductController')->name('product');
 });
 
 //Login and logout with user

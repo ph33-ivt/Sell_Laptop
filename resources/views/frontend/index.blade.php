@@ -4,34 +4,16 @@
 <div class="banner-area wrapper-padding gray-bg-7 pt-60">
     <div class="container-fluid">
         <div class="row">
+            @foreach ($productsApple as $product)
             <div class="col-lg-4">
                 <div class="banner-wrapper-4 mb-30">
-                    <a href="#"><img src="{{ asset('/img/frontend/banner/20.jpg')}}" alt=""></a>
+                    <a href="#"><img src="{{ asset('/img/frontend/product/apple/'.$product->image) }}" alt=""></a>
                     <div class="banner-content4-style1">
-                        <h4>Best <br>Electronics <br>Products.</h4>
+                        <h4>Best <br>Product <br>{{$product->name}}.</h4>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="banner-wrapper-4 mb-30">
-                    <a href="#"><img src="{{ asset('/img/frontend/banner/21.jpg')}}" alt=""></a>
-                    <div class="banner-content4-style2">
-                        <h5 class="p-left">get</h5>
-                        <h2>25% </h2>
-                        <h5 class="p-right">off</h5>
-                        <h3>Bitso X1202</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="banner-wrapper-4 mb-30">
-                    <a href="#"><img src="{{ asset('/img/frontend/banner/22.jpg')}}" alt=""></a>
-                    <div class="banner-content4-style3">
-                        <h1>Up to <br>10% Off</h1>
-                        <h3>Lonovo Vio D22</h3>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -41,226 +23,39 @@
             <h2>Top Products</h2>
         </div>
         <div class="row">
+            @foreach ($topProducts as $product)
             <div class="col-lg-3 col-md-6">
-                <div class="product-wrapper mb-30">
-                    <div class="product-img-3">
-                        <a href="product-details-9.html">
-                            <img src="{{asset('img/frontend/product/electro/22.jpg')}}" alt="">
-                        </a>
-                        <div class="hanicraft-action-position">
-                            <div class="hanicraft-action">
-                                <a class="action-cart" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="action-like" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="action-repeat" title="Compare" href="#" data-toggle="modal" data-target="#exampleCompare" >
-                                    <i class="pe-7s-repeat"></i>
-                                </a>
+                    <div class="product-wrapper mb-30">
+                        <div class="product-img-3">
+                            <a href="{{route('user.product.details',$product->id)}}">
+                                <img src="{{asset('img/frontend/product/all/'.$product->image)}}" alt="">
+                            </a>
+                            <div class="hanicraft-action-position">
+                                <div class="hanicraft-action">
+                                    <a class="action-cart" title="Add To Cart" href="{{route('user.product.details',$product->id)}}">
+                                        <i class="pe-7s-cart"></i>
+                                    </a>
+                                    {{-- <a class="action-like" title="Wishlist" href="#">
+                                        <i class="pe-7s-like"></i>
+                                    </a>
+                                    <a class="action-repeat" title="Compare" href="#" data-toggle="modal" data-target="#exampleCompare" >
+                                        <i class="pe-7s-repeat"></i>
+                                    </a> --}}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="product-content-electro2 text-center">
-                        <h3><a href="product-details.html"> Demo TV 32GB</a></h3>
-                        <span>Black</span>
-                        <h5>$49.99</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="product-wrapper mb-30">
-                    <div class="product-img-3">
-                        <a href="#">
-                            <img src="{{asset('img/frontend/product/electro/23.jpg')}}" alt="">
-                        </a>
-                        <div class="hanicraft-action-position">
-                            <div class="hanicraft-action">
-                                <a class="action-cart" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="action-like" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="action-repeat" title="Compare" href="#" data-toggle="modal" data-target="#exampleCompare" >
-                                    <i class="pe-7s-repeat"></i>
-                                </a>
-                            </div>
+                        <div class="product-content-electro2 text-center">
+                        <h3><a href=" {{route('user.product.details',$product->id)}}"></a></h3>
+                            <span>{{$product->color}}</span>
+                            <h5>${{$product->price}}</h5>
                         </div>
                     </div>
-                    <div class="product-content-electro2 text-center">
-                        <h3><a href="product-details.html">Pebble Time</a></h3>
-                        <span>Black</span>
-                        <h5>$49.99</h5>
-                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="product-wrapper mb-30">
-                    <div class="product-img-3">
-                        <a href="#">
-                            <img src="{{asset('img/frontend/product/electro/24.jpg')}}" alt="">
-                        </a>
-                        <div class="hanicraft-action-position">
-                            <div class="hanicraft-action">
-                                <a class="action-cart" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="action-like" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="action-repeat" title="Compare" href="#" data-toggle="modal" data-target="#exampleCompare" >
-                                    <i class="pe-7s-repeat"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-content-electro2 text-center">
-                        <h3><a href="product-details.html">Zendure 4-Port USB</a></h3>
-                        <span>Black</span>
-                        <h5>$49.99</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="product-wrapper mb-30">
-                    <div class="product-img-3">
-                        <a href="#">
-                            <img src="{{asset('img/frontend/product/electro/25.jpg')}}" alt="">
-                        </a>
-                        <div class="hanicraft-action-position">
-                            <div class="hanicraft-action">
-                                <a class="action-cart" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="action-like" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="action-repeat" title="Compare" href="#" data-toggle="modal" data-target="#exampleCompare" >
-                                    <i class="pe-7s-repeat"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-content-electro2 text-center">
-                        <h3><a href="product-details.html">Zendure 4-Port USB</a></h3>
-                        <span>Black</span>
-                        <h5>$49.99</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="product-wrapper mb-30">
-                    <div class="product-img-3">
-                        <a href="#">
-                            <img src="{{ asset('img/frontend/product/electro/26.jpg')}}" alt="">
-                        </a>
-                        <div class="hanicraft-action-position">
-                            <div class="hanicraft-action">
-                                <a class="action-cart" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="action-like" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="action-repeat" title="Compare" href="#" data-toggle="modal" data-target="#exampleCompare" >
-                                    <i class="pe-7s-repeat"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-content-electro2 text-center">
-                        <h3><a href="product-details.html"> Demo TV 32GB</a></h3>
-                        <span>Black</span>
-                        <h5>$49.99</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="product-wrapper mb-30">
-                    <div class="product-img-3">
-                        <a href="#">
-                            <img src="{{ asset('img/frontend/product/electro/27.jpg')}}" alt="">
-                        </a>
-                        <div class="hanicraft-action-position">
-                            <div class="hanicraft-action">
-                                <a class="action-cart" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="action-like" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="action-repeat" title="Compare" href="#" data-toggle="modal" data-target="#exampleCompare" >
-                                    <i class="pe-7s-repeat"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-content-electro2 text-center">
-                        <h3><a href="product-details.html"> Pebble Time</a></h3>
-                        <span>Black</span>
-                        <h5>$49.99</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="product-wrapper mb-30">
-                    <div class="product-img-3">
-                        <a href="#">
-                            <img src="{{ asset('img/frontend/product/electro/28.jpg')}}" alt="">
-                        </a>
-                        <div class="hanicraft-action-position">
-                            <div class="hanicraft-action">
-                                <a class="action-cart" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="action-like" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="action-repeat" title="Compare" href="#" data-toggle="modal" data-target="#exampleCompare" >
-                                    <i class="pe-7s-repeat"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-content-electro2 text-center">
-                        <h3><a href="product-details.html">Zendure 4-Port USB</a></h3>
-                        <span>Black</span>
-                        <h5>$49.99</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="product-wrapper mb-30">
-                    <div class="product-img-3">
-                        <a href="#">
-                            <img src="{{ asset('img/frontend/product/electro/29.jpg')}}" alt="">
-                        </a>
-                        <div class="hanicraft-action-position">
-                            <div class="hanicraft-action">
-                                <a class="action-cart" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="action-like" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="action-repeat" title="Compare" href="#" data-toggle="modal" data-target="#exampleCompare" >
-                                    <i class="pe-7s-repeat"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-content-electro2 text-center">
-                        <h3><a href="product-details.html">Zendure 4-Port USB</a></h3>
-                        <span>Black</span>
-                        <h5>$49.99</h5>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
-<div class="banner-area wrapper-padding pt-15 pb-95 gray-bg-7">
+{{-- <div class="banner-area wrapper-padding pt-15 pb-95 gray-bg-7">
     <div class="container">
         <div class="electro-fexible-banner bg-img" style="background-image: url({{ asset('img/frontend/banner/23.jpg')}})">
             <div class="fexible-content fexible-content-2 ">
@@ -271,7 +66,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <div class="best-selling-area pb-95 gray-bg-7">
     <div class="section-title-4 text-center mb-60">
         <h2>Best Selling</h2>
@@ -486,7 +281,7 @@
         </div>
     </div>
 </div>
-<div class="androit-banner-wrapper wrapper-padding pt-100 pb-175">
+{{-- <div class="androit-banner-wrapper wrapper-padding pt-100 pb-175">
     <div class="container-fluid">
         <div class="androit-banner-img bg-img" style="background-image: url({{asset('img/frontend/banner/36.jpg')}})">
             <div class="androit-banner-content">
@@ -504,7 +299,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <div class="product-area-2 wrapper-padding pt-100 pb-70 gray-bg-7">
     <div class="container-fluid">
         <div class="row">

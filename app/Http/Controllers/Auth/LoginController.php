@@ -40,20 +40,30 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function username(LoginRequest $request)
+    {
+        $identity  = $request->get('identity');
+        $fieldName = filter_var($identity, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+        $request->merge([$fieldName => $identity]);
+        return $fieldName;
+    }
+
     public function login(LoginRequest $request)
     {
-        if(Auth::attempt($request->except('_token')) && (Auth::user()->can('isAdmin',5)))
+        $data = $request->only($this->username($request), 'password');
+        if(Auth::attempt($data) && (Auth::user()->can('isAdmin',5)))
         {
             return redirect()->route('admin.dashboard');
 
         }
-        elseif(Auth::attempt($request->except('_token')))
+        elseif(Auth::attempt($data))
         {
             return redirect()->route('index');
         }
         return redirect()->back()->with('error','Email or password incorrect ');
 
     }
+
     public function logout(Request $request)
     {
         //check user not admin

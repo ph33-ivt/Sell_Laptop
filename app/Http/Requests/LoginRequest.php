@@ -24,19 +24,15 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'=> 'required|max:35|email',
-            'password' => 'required|min:4',
-
+            'identity' => 'required',
+            'password'=> 'required',
         ];
     }
     public function messages()
     {
         return [
-            'email.email' => 'Enter email style email',
-            'email.required' => 'a email is required',
-            'email.max' => 'Enter email maximum 35 character',
-            'password.required' => 'password is required',
-            'password.min' => 'Enter password minimum 4 character ',
+            'identity.required' => 'a name is required',
+            'password.required' => 'Enter name minimum  4 character',
         ];
     }
 }

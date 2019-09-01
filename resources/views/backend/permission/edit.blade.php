@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('title')
-Edit permission | Dashboard
+ Laptop Shop | Edit permission
 @endsection
 
 @section('content')

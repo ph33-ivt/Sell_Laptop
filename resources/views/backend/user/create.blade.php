@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('title')
-Create User | Dashboard
+Laptop shop| Create User
 @endsection
 
 @section('content')

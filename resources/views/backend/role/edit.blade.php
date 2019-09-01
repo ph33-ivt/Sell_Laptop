@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('title')
-Edit Role | Dashboard
+Laptop Shop| Edit Role
 @endsection
 
 @section('content')

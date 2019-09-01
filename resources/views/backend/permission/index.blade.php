@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('title')
-Laptop Shop | Dashboard
+Laptop Shop | Permission
 @endsection
 
 @section('content')

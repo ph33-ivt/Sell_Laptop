@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('title')
-Edit User | Dashboard
+Laptop Shop | Edit User
 @endsection
 
 @section('content')

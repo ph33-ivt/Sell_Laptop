@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('title')
-Create Role | Dashboard
+Create Role | Create Role
 @endsection
 
 @section('content')

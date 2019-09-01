@@ -2,7 +2,11 @@
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="info">
-      <a href="#" class="d-block">{{Auth::user()->name}}</a>
+        <a href="#" class="d-block">
+            @if (Auth::check())
+            {{Auth::user()->name}}
+            @endif
+        </a>
       </div>
     </div>
 
@@ -38,7 +42,33 @@
                   <p>Permission</p>
                 </a>
               </li>
-              <li class="nav-header">LABELS</li>
+              <li class="nav-item">
+                <a href="{{route('admin.category.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Category</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('admin.product.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Product</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('admin.product.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Order</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('admin.product.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Order Details</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-pills nav-sidebar flex-column"  role="menu" >
+            <li class="nav-header">LABELS</li>
               <li class="nav-item">
                 <a href="href="{{ route('logout') }}"
                 onclick="event.preventDefault();
@@ -51,6 +81,5 @@
                 </form>
               </li>
             </ul>
-
     <!-- /.sidebar-menu -->
   </div>

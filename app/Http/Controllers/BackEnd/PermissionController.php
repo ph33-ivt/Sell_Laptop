@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Permission;
 use App\http\Requests\BackEnd\PermissionCreateRequest;
+use App\Http\Requests\BackEnd\PermissionEditRequest;
 
 class PermissionController extends Controller
 {
@@ -77,7 +78,7 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PermissionEditRequest $request, $id)
     {
         $this->authorize('update',Permission::class);
         $data = $request->except('_token');

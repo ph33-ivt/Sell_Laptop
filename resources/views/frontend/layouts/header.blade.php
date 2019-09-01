@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div class="header-cart-3">
-                <a href="#">
+                <a href="{{route('user.cart')}}">
                     <i class="ti-shopping-cart"></i>My Cart
                     <span>02</span>
                 </a>
