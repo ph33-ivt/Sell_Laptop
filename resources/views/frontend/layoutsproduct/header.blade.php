@@ -12,17 +12,11 @@
                             <ul>
                                 <li><a href="#">home</a>
                                     <ul class="single-dropdown">
-                                        <li><a href="index.html">Fashion</a></li>
-                                        <li><a href="index-fashion-2.html">Fashion style 2</a></li>
-                                        <li><a href="index-fruits.html">fruits</a></li>
-                                        <li><a href="index-book.html">book</a></li>
-                                        <li><a href="index-electronics.html">electronics</a></li>
-                                        <li><a href="index-electronics-2.html">electronics style 2</a></li>
-                                        <li><a href="index-food.html">food & drink</a></li>
-                                        <li><a href="index-furniture.html">furniture</a></li>
-                                        <li><a href="index-handicraft.html">handicraft</a></li>
-                                        <li><a target="_blank" href="index-smart-watch.html">smart watch</a></li>
-                                        <li><a href="index-sports.html">sports</a></li>
+                                        <li><a href="index.html">Apple</a></li>
+                                        <li><a href="index-fashion-2.html">HP</a></li>
+                                        <li><a href="index-fruits.html">DEll</a></li>
+                                        <li><a href="index-book.html">Asus</a></li>
+                                        <li><a href="index-electronics.html">Acer</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">pages</a>
@@ -33,11 +27,10 @@
                                         <li><a href="register.html">register</a></li>
                                         <li><a href="cart.html">cart page</a></li>
                                         <li><a href="checkout.html">checkout</a></li>
-                                        <li><a href="wishlist.html">wishlist</a></li>
                                         <li><a href="contact.html">contact</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="shop.html">shop</a>
+                                {{-- <li><a href="shop.html">shop</a>
                                     <div class="category-menu-dropdown shop-menu">
                                         <div class="category-dropdown-style category-common2 mb-30">
                                             <h4 class="categories-subtitle"> shop layout</h4>
@@ -73,7 +66,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                </li>
+                                </li> --}}
                                 <li><a href="blog.html">blog</a>
                                     <ul class="single-dropdown">
                                         <li><a href="blog.html">blog 3 colunm</a></li>
@@ -87,6 +80,28 @@
                             </ul>
                         </nav>
                     </div>
+                    <div class="menu-style-2 furniture-menu menu-hover electronics-login-register">
+                            <nav>
+                                <ul>
+                                    @if(empty(Auth::check()) )
+                                    <li><a href="{{route('login')}}"><i class="pe-7s-user"></i>Login</a></li>
+                                    <li><a href="{{route('register')}}"><i class="pe-7s-add-user"></i>Register</a></li>
+                                    @else
+                                    <li><a href="{{ route('account') }}"><i class="pe-7s-users"></i>{{Auth::user()->name}}</a></li>
+                                    <li>
+                                    <a class="" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                        <i class="pe-7s-angle-right-circle"></i>Logout</a></li>
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    </li>
+                                    @endif
+                                </ul>
+                            </nav>
+                        </div>
                     <div class="header-cart">
                         <a class="icon-cart-furniture" href="#">
                             <i class="ti-shopping-cart"></i>

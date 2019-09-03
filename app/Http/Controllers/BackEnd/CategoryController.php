@@ -4,6 +4,9 @@ namespace App\Http\Controllers\BackEnd;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Category;
+use App\Product;
+use App\Http\Requests\BackEnd\CategoryCreateRequest;
 
 class CategoryController extends Controller
 {
@@ -14,7 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('backend.category.index',compact('categories'));
     }
 
     /**
@@ -24,7 +28,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('backend.category.create');
     }
 
     /**
@@ -33,9 +38,11 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryCreateRequest $request)
     {
-        //
+        $data = $request->except('_token');
+        $category = Category::create($data);
+        return redirect()->route('admin.category.index')->with('success','Created category success');
     }
 
     /**
@@ -57,7 +64,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $category = Category::find($id);
+        return view('backend.category.edit',compact('category'));
     }
 
     /**
@@ -69,8 +78,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->except('_token');
+        $category = Category::find($id);
+        $category->update($data);
+        return redirect()->route('admin.category.index')->with('success','Update category success');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -80,6 +93,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+        return redirect()->route('admin.category.index')->with('success','Delete category success');
     }
 }

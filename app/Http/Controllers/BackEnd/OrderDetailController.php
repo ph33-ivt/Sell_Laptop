@@ -4,6 +4,7 @@ namespace App\Http\Controllers\BackEnd;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\OrderDetail;
 
 class OrderDetailController extends Controller
 {
@@ -46,7 +47,9 @@ class OrderDetailController extends Controller
      */
     public function show($id)
     {
-        //
+        //dd($id);
+        $orderdetails = OrderDetail::where('order_id',$id)->get();
+        return view('backend.orderdetail.show',compact('orderdetails'));
     }
 
     /**

@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Session;
 use DB;
 use Symfony\Component\CssSelector\Parser\Shortcut\ElementParser;
 use App\OrderDetail;
-
+use App\Mail\OrderShipped;
+use App\Http\Requests\FrontEnd\PlaceOrderRequest;
 
 class ProductController extends Controller
 {
@@ -119,7 +120,7 @@ class ProductController extends Controller
         return view('frontend.layoutsproduct.checkout',compact('user_email','user_id','userCarts'));
     }
 
-    public function placeorder(Request $request)
+    public function placeorder(PlaceOrderRequest $request)
     {
         $user_id = Auth::user()->id;
         $user_email = Auth::user()->email;
@@ -128,17 +129,12 @@ class ProductController extends Controller
         $data['user_id'] = $user_id;
         $data['user_email'] = $user_email;
         $data['status'] ='';
-
-        //dd($data);
         //Insert order in order table
-        Order::insert($data);
-
-        //Get order_id in table order
+        Order::create($data);
+        //Get order_id in table order then insert table order_details
         $order_id =  DB::getPdo()->lastInsertId();
         $discount = 0;
-        //dd($order_id);
         $userCarts = DB::table('carts')->where(['user_email' => $user_email])->get();
-       //dd($userCarts);
         foreach($userCarts as $product) {
             OrderDetail::create([
                 'order_id' => $order_id,
@@ -151,13 +147,34 @@ class ProductController extends Controller
         }
         Session::put('order_id',$order_id);
         Session::put('grand_total',$data['grand_total']);
-        return redirect()->route('user.thanks');
-        //delete  userCarts in Cart table
-       // $userCarts = DB::table('carts')->where(['user_email' => $user_email])->delete();
-    }
+        if($data['payment_method'] == 'COD')
+        {
+            $email = $user_email;
+            $messageData = [
+                'email' => $email,
+                'firstname' => $data['firstname'],
+                'lastname' => $data['lastname'],
+                'company' => $data['company'],
+                'address' => $data['address'],
+                'city' => $data['city'],
+                'state' => $data['state'],
+                'zip' => $data['zip'],
+                'phone' => $data['phone'],
+                'grand_total' => $data['grand_total'],
+                'payment_method' => $data['payment_method'],
+            ];
 
+            $order = Order::find( $order_id);
+           // \Mail::to($email)->send(new OrderShipped($messageData['email'],$messageData['firstname'],$messageData['lastname'],$messageData['company'],$messageData['address'],$messageData['city'],$messageData['state'],$messageData['zip'],$messageData['phone'],$messageData['grand_total'],$messageData['payment_method']));
+           \Mail::to($email)->send(new OrderShipped($order));
+            return redirect()->route('user.thanks');
+        }
+    }
     public function thanks()
     {
+        $user_email = Auth::user()->email;
+        //delete  userCarts in Cart table
+        $userCarts = DB::table('carts')->where(['user_email' => $user_email])->delete();
         return view('frontend.layoutsproduct.thanks');
     }
 }

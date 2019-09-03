@@ -44,7 +44,7 @@ Laptop Shop | Permission
                     @method('DELETE')
                 </form>
                 @can('delete',App\Permission::class)
-                <a href="" onclick=" event.preventDefault(); document.getElementById('delete-form-{{$permission->id}}').submit();"><i class="far fa-trash-alt"></i></a>
+                <a href="javascript:document.getElementById('delete-form-{{$permission->id}}').submit();" onclick=" return confirm('Are you sure?') "><i class="far fa-trash-alt"></i></a>
                 @endcan
             </td>
             </tr>

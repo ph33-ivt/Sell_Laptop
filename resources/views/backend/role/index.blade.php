@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('title')
-Laptop Shop | Role 
+Laptop Shop | Role
 @endsection
 
 @section('content')
@@ -44,7 +44,7 @@ Laptop Shop | Role
                     @method('DELETE')
                 </form>
                 @can('delete',App\Role::class)
-                <a href="" onclick=" event.preventDefault(); document.getElementById('delete-form-{{$role->id}}').submit();"><i class="far fa-trash-alt"></i></a>
+                <a href="javascript:document.getElementById('delete-form-{{$role->id}}').submit();" onclick=" return confirm('Are you sure?') "><i class="far fa-trash-alt"></i></a>
                 @endcan
             </td>
             </tr>

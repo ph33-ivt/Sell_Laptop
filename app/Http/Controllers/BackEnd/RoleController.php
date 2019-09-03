@@ -22,9 +22,7 @@ class RoleController extends Controller
         $this->authorize('viewindex',Role::class);
         $roles = Role::all();
         return view('backend.role.index',compact('roles'));
-
     }
-
     /**
      * Show the form for creating a new resource.
      *

@@ -21,6 +21,7 @@ CheckOut
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    @include('messages.msg')
                     <div class="coupon-accordion">
                         <!-- ACCORDION START -->
                         <h3>Returning customer? <span id="showlogin">Click here to login</span></h3>
@@ -358,13 +359,13 @@ CheckOut
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
-                                            <label>State / County <span class="required">*</span></label>
+                                            <label>State / County <span class="required"></span></label>
                                             <input type="text" placeholder="State" name="state" value="{{old('state')}}" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
-                                            <label>Postcode / Zip <span class="required">*</span></label>
+                                            <label>Postcode / Zip <span class="required"></span></label>
                                             <input type="text" name="zip" value="{{old('zip')}}" placeholder="zip"  />
                                         </div>
                                     </div>
@@ -394,10 +395,6 @@ CheckOut
                                         $total = 0;
                                         @endphp
                                         @foreach ($userCarts as $cart)
-                                        {{-- <input type="hidden" name="product_id" value="{{$cart->product_id}}">
-                                        <input type="hidden" name="product_name" value="{{$cart->product_name}}">
-                                        <input type="hidden" name="quantity" value="{{$cart->quantity}}">
-                                        <input type="hidden" name="price" value="{{$cart->price}}"> --}}
                                         <tr class="cart_item">
                                                 <td class="product-name">
                                                 {{$cart->product_name}} <strong class="product-quantity"> × {{$cart->quantity}}</strong>

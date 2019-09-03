@@ -31,7 +31,9 @@ Route::group(['prefix' => 'admin',
             Route::resource('role', 'RoleController');
             Route::resource('permission', 'PermissionController');
             Route::resource('category', 'CategoryController');
-            Route::resource('product', 'CategoryController');
+            Route::resource('product', 'ProductController');
+            Route::resource('order', 'OrderController');
+            Route::resource('orderdetail', 'OrderDetailController');
 });
 
  //User
@@ -44,6 +46,7 @@ Route::group(['prefix' => 'user',
              ],
         function () {
             Route::get('product/{id}','ProductController@details')->name('product.details');
+            Route::get('category','CategoryController@index')->name('category');
             Route::post('addtocart/{id}','ProductController@addcart')->name('add.cart');
             Route::get('cart','ProductController@cart')->name('cart');
             Route::put('cart/{id}/update', 'ProductController@updatecart')->name('update.cart');

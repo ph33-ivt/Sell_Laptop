@@ -91,7 +91,7 @@
                         </div>
                         <div class="footer-services-content">
                             <h3>Free Shipping</h3>
-                            <p>Free Shipping on Bangladesh</p>
+                            <p>Free Shipping on Viet Nam</p>
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,6 @@
                         </div>
                         <div class="footer-services-content">
                             <h3>Money Guarentee</h3>
-                            <p>Free Shipping on Bangladesh</p>
                         </div>
                     </div>
                 </div>
@@ -113,7 +112,6 @@
                         </div>
                         <div class="footer-services-content">
                             <h3>Online Support</h3>
-                            <p>Free Shipping on Bangladesh</p>
                         </div>
                     </div>
                 </div>
@@ -138,7 +136,7 @@
                     <div class="copyright f-right mrg-5">
                         <p>
                             Copyright ©
-                            <a href="https://hastech.company/">HasTech</a> 2018 . All Right Reserved.
+                            <a href="https://hastech.company/">LaptopSell</a> 2019 . All Right Reserved.
                         </p>
                     </div>
                 </div>

@@ -44,7 +44,7 @@ Laptop Shop | List User
                     @method('DELETE')
                 </form>
                 @can('delete', App\User::class)
-                <a href="" onclick=" event.preventDefault(); document.getElementById('delete-form-{{$user->id}}').submit();"><i class="far fa-trash-alt"></i></a>
+                <a href="javascript:document.getElementById('delete-form-{{$user->id}}').submit();" onclick=" return confirm('Are you sure?') "><i class="far fa-trash-alt"></i></a>
                 @endcan
             </td>
             </tr>
