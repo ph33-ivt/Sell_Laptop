@@ -87,4 +87,13 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function updatestatus(Request $request)
+    {
+        $data = $request->except('_token');
+       // dd($data['order_id']);
+      \DB::table('orders')->where('id',$data['order_id'])->update(['status' => $data['status']]);
+      return redirect()->back()->with('success','Update status order success');
+
+    }
 }

@@ -6,24 +6,21 @@
                 <div class="category-menu-list">
                     <ul>
                         <li>
-                            <a href="#"><img alt="" src="{{asset('img/frontend/icon-img/15.png')}}">Laptops <i class="pe-7s-angle-right"></i></a>
-                         <li>
-                        <a href="#"><img alt="" src="{{asset('img/frontend/icon-img/18.png') }}">TV & Audio </a>
+                            <a href="#"><img alt="" src="{{asset('img/frontend/icon-img/15.png')}}">Apple</i></a>
+                        <li>
+                            <a href="#"><img alt="" src="{{asset('img/frontend/icon-img/15.png') }}">HP </a>
                         </li>
                         <li>
-                            <a href="#"><img alt="" src="{{asset('img/icon-img/19.png') }}"> Game & Play Station</a>
+                            <a href="#"><img alt="" src="{{asset('img/frontend/icon-img/15.png') }}"> DELL</a>
                         </li>
                         <li>
-                            <a href="#"><img alt="" src="{{asset('img/icon-img/20.png') }}"> Car Electronics </a>
+                            <a href="#"><img alt="" src="{{asset('img/frontend/icon-img/15.png') }}"> ASUS </a>
                         </li>
                         <li>
-                            <a href="#"><img alt="" src="{{asset('img/icon-img/21.png') }}"> Accessories </a>
+                            <a href="#"><img alt="" src="{{asset('img/frontend/icon-img/15.png') }}"> ACER </a>
                         </li>
                         <li>
-                            <a href="#"><img alt="" src="{{asset('img/icon-img/22.png') }}"> Gadgets</a>
-                        </li>
-                        <li>
-                            <a href="#"><img alt="" src="{{asset('img/icon-img/23.png') }}">Others Equipment</a>
+                            <a href="#"><img alt="" src="{{asset('img/frontend/icon-img/15.png') }}">Others Equipment</a>
                         </li>
                     </ul>
                 </div>
@@ -44,12 +41,10 @@
                     <li><a href="#">page </a>
                         <ul class="single-dropdown">
                             <li><a href="about-us.html">about us</a></li>
-                            <li><a href="menu-list.html">menu list</a></li>
-                            <li><a href="login.html">login</a></li>
-                            <li><a href="register.html">register</a></li>
-                            <li><a href="cart.html">cart page</a></li>
-                            <li><a href="checkout.html">checkout</a></li>
-                            <li><a href="contact.html">contact</a></li>
+                            <li><a href="{{route('login')}}">login</a></li>
+                            <li><a href="{{route('register')}}">register</a></li>
+                            <li><a href="{{route('user.cart')}}">cart page</a></li>
+                            <li><a href="{{route('contact')}}">contact</a></li>
                         </ul>
                     </li>
                     <li><a href="#">contact</a></li>
@@ -65,7 +60,7 @@
                 <div class="slider-content-4 fadeinup-animated">
                     <h2 class="animated">Say hello! to the <br>future.</h2>
                     <h4 class="animated">Best Product With warranty  </h4>
-                    <a class="electro-slider-btn btn-hover animated" href="product-details.html">buy now</a>
+                    <a class="electro-slider-btn btn-hover animated" href="#">buy now</a>
                 </div>
             </div>
         </div>
@@ -74,7 +69,7 @@
                 <div class="slider-content-4 fadeinup-animated">
                     <h2 class="animated">Laptop game to <br>future.</h2>
                     <h4 class="animated">Best Product With warranty  </h4>
-                    <a class="electro-slider-btn btn-hover animated" href="product-details.html">buy now</a>
+                    <a class="electro-slider-btn btn-hover animated" href="#">buy now</a>
                 </div>
             </div>
         </div>

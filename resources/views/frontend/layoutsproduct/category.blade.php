@@ -5,29 +5,7 @@ Category
 @endsection
 
 @section('content')
-<div class="breadcrumb-area pt-205 pb-210" style="background-image: url(assets/img/bg/breadcrumb.jpg)">
-    <div class="container">
-        <div class="breadcrumb-content text-center">
-            <h2>Category Details</h2>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li>Category </li>
-            </ul>
-        </div>
-    </div>
-</div>
  <!-- category Content -->
- <div class="breadcrumb-area pt-205 breadcrumb-padding pb-210" style="background-image: url(assets/img/bg/breadcrumb.jpg)">
-    <div class="container-fluid">
-        <div class="breadcrumb-content text-center">
-            <h2>shop list 2 column</h2>
-            <ul>
-                <li><a href="#">home</a></li>
-                <li>shop list 2 column</li>
-            </ul>
-        </div>
-    </div>
-</div>
 <div class="shop-page-wrapper shop-page-padding ptb-100">
     <div class="container-fluid">
         <div class="row">

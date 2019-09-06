@@ -5,17 +5,6 @@ CheckOut
 @endsection
 
 @section('content')
-<div class="breadcrumb-area pt-205 pb-210" style="background-image: url(assets/img/bg/breadcrumb.jpg)">
-    <div class="container">
-        <div class="breadcrumb-content text-center">
-            <h2>Checkout Details</h2>
-            <ul>
-            <li><a href="{{route('index')}}">Home</a></li>
-                <li> Checkout </li>
-            </ul>
-        </div>
-    </div>
-</div>
   <!-- checkout-area start -->
   <div class="checkout-area ptb-100">
         <div class="container">
@@ -50,20 +39,6 @@ CheckOut
                                 </form>
                             </div>
                         </div>
-                        <!-- ACCORDION END -->
-                        <!-- ACCORDION START -->
-                        {{-- <h3>Have a coupon? <span id="showcoupon">Click here to enter your code</span></h3>
-                        <div id="checkout_coupon" class="coupon-checkout-content">
-                            <div class="coupon-info">
-                                <form action="#">
-                                    <p class="checkout-coupon">
-                                        <input type="text" placeholder="Coupon code" />
-                                        <input type="submit" value="Apply Coupon" />
-                                    </p>
-                                </form>
-                            </div>
-                        </div> --}}
-                        <!-- ACCORDION END -->
                     </div>
                 </div>
             </div>

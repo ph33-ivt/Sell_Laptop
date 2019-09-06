@@ -19,7 +19,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewindex',Role::class);
+      //  $this->authorize('viewindex',Role::class);
         $roles = Role::all();
         return view('backend.role.index',compact('roles'));
     }

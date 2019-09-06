@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="{{asset('css/frontend/bundle.css')}}">
         <link rel="stylesheet" href="{{asset('css/frontend/style.css')}}">
         <link rel="stylesheet" href="{{asset('css/frontend/responsive.css')}}">
+        <link rel="stylesheet" href="{{asset('css/frontend/custom.css')}}">
         <script src="{{asset('js/frontend/vendor/modernizr-2.8.3.min.js')}}"></script>
     </head>
     <body>
@@ -147,62 +148,7 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="compare-title"><h4>Description </h4></td>
-                                            <td class="compare-dec compare-common">
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has beenin the stand ard dummy text ever since the 1500s, when an unknown printer took a galley</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="compare-title"><h4>Sku </h4></td>
-                                            <td class="product-none compare-common">
-                                                <p>-</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="compare-title"><h4>Availability  </h4></td>
-                                            <td class="compare-stock compare-common">
-                                                <p>In stock</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="compare-title"><h4>Weight   </h4></td>
-                                            <td class="compare-none compare-common">
-                                                <p>-</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="compare-title"><h4>Dimensions   </h4></td>
-                                            <td class="compare-stock compare-common">
-                                                <p>N/A</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="compare-title"><h4>brand   </h4></td>
-                                            <td class="compare-brand compare-common">
-                                                <p>HasTech</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="compare-title"><h4>color   </h4></td>
-                                            <td class="compare-color compare-common">
-                                                <p>Grey, Light Yellow, Green, Blue, Purple, Black </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="compare-title"><h4>size    </h4></td>
-                                            <td class="compare-size compare-common">
-                                                <p>XS, S, M, L, XL, XXL </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="compare-title"></td>
-                                            <td class="compare-price compare-common">
-                                                <p>$75.99 </p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+
                                 </table>
                             </div>
                         </form>

@@ -23,8 +23,8 @@
                             <h3 class="footer-widget-title">Categories</h3>
                             <div class="footer-widget-content">
                                 <ul>
-                                    <li><a href="shop.html">Dress</a></li>
-                                    <li><a href="shop.html">Shoes</a></li>
+                                    <li><a href="shop.html">Macbook</a></li>
+                                    <li><a href="shop.html">HP</a></li>
                                     <li><a href="shop.html">Shirt</a></li>
                                     <li><a href="shop.html">Baby Product</a></li>
                                     <li><a href="shop.html">Mans Product</a></li>
@@ -69,7 +69,7 @@
                         <div class="copyright">
                             <p>
                                 Copyright ©
-                                <a href="https://hastech.company/">HasTech</a> 2018 . All Right Reserved.
+                                <a href="https://hastech.company/">Laptop Sell</a> 2019 . All Right Reserved.
                             </p>
                         </div>
                     </div>

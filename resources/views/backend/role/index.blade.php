@@ -19,7 +19,7 @@ Laptop Shop | Role
             @endcan
           <table id="example2" class="table table-bordered table-hover">
             <thead>
-            <tr>
+            <tr style=" color:red;background-color: #3e8409;">
               <th>No</th>
               <th>Name</th>
               <th>description</th>

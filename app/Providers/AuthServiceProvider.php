@@ -38,26 +38,14 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //Gate::resource('roles','App\Policies\RolePolicy');
-        Gate::define('isAdmin', function ($user, $p_id) {
+        Gate::define('isAdmin', function ($user) {
             foreach ($user->roles as $role) {
-                if($role->id != $p_id && $user->roles != '')
+                if( $role->id != 5)
                 {
                     return true;
                 }
+                return false;
             }
-            return false;
           });
-          // check user view management of role
-        //   Gate::define('viewindex', function ($user) {
-        //     foreach ($user->roles as $role ) {
-        //         foreach ($role->permissions as $permission) {
-        //             if($permission->id == 8)
-        //             {
-        //                 return true;
-        //             }
-        //         }
-        //     }
-        //     return false;
-        //   });
     }
 }

@@ -30,14 +30,6 @@
                             <a href="{{route('user.product.details',$product->id)}}">
                                 <img src="{{asset('img/frontend/product/all/'.$product->image)}}" alt="" style="width: 270px;height:280px;">
                             </a>
-                            <div class="hanicraft-action-position">
-                                <div class="hanicraft-action">
-                                    <a class="action-cart" title="Add To Cart" href="{{route('user.product.details',$product->id)}}">
-                                        <i class="pe-7s-cart"></i>
-                                    </a>
-
-                                </div>
-                            </div>
                         </div>
                         <div class="product-content-electro2 text-center">
                         <h3><a href=" {{route('user.product.details',$product->id)}}"></a></h3>

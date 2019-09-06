@@ -20,7 +20,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(8);
+
+        $products = Product::orderBy('id','desc')->paginate(8);
         return view('backend.product.index',compact('products'));
     }
 
@@ -44,32 +45,26 @@ class ProductController extends Controller
     public function store(ProductCreateRequest $request)
     {
         $imagename = \DB::table('categories')->where('id',$request->category_id)->pluck('name')->get(0);
-        $product = new Product();
-        $product->category_id = $request->category_id;
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->color = $request->color;
-        $product->weight = $request->weight;
-        $product->cpu = $request->cpu;
-        $product->ram = $request->ram;
-        $product->hdd = $request->hdd;
-        $product->os = $request->os;
-        $product->card = $request->card;
-        $product->quantity = $request->quantity;
         if ($request->hasfile('image')){
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension(); // get image extension
             $filename = $imagename . '.' . $extension;
             $file->move('img/frontend/product/all/',$filename);
-            $product->image = $filename;
         }
         else
         {
-            $product->image ='';
+            return redirect()->back()->with('error','No image import');
         }
-        $product->save();
-        return redirect()->route('admin.product.index')->with('success','Created product success');
+        $data = $request->except('_token','image');
+        $data['image'] = $filename;
+        if(Product::where('name',$data['name'])->where('category_id',$data['category_id']))
+        {
+            return redirect()->back()->with('error','Product a exsits');
+        }else{
+            Product::create($data);
+            return redirect()->route('admin.product.index')->with('success','Created product success');
+        }
+
     }
 
     /**
@@ -108,30 +103,20 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $imagename = \DB::table('categories')->where('id',$request->category_id)->pluck('name')->get(0);
-        $product->category_id = $request->category_id;
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->color = $request->color;
-        $product->weight = $request->weight;
-        $product->cpu = $request->cpu;
-        $product->ram = $request->ram;
-        $product->hdd = $request->hdd;
-        $product->os = $request->os;
-        $product->card = $request->card;
-        $product->quantity = $request->quantity;
         if ($request->hasfile('image')){
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension(); // get image extension
             $filename = $imagename . '.' . $extension;
             $file->move('img/frontend/product/all/',$filename);
-            $product->image = $filename;
         }
         else
         {
-            $product->image ='';
+            return redirect()->back()->with('error','No image import');
         }
-        $product->save();
+        $data = $request->except('_token','image');
+        $data['image'] = $filename;
+        dd($data);
+        $product->update($data);
         return redirect()->route('admin.product.index')->with('success','Update product success');
 
     }
@@ -149,4 +134,5 @@ class ProductController extends Controller
         return redirect()->route('admin.product.index')->with('success','Delete product success');
     }
 }
+
 

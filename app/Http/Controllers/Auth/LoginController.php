@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Symfony\Component\HttpFoundation\Request;
-use App\Http\Requests\LoginRequest;
 use Auth;
 use DB;
 use App\Role;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
 class LoginController extends Controller
 {
     /*
@@ -42,18 +42,36 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function username(LoginRequest $request)
+    public function username()
     {
-        $identity  = $request->get('identity');
+        $identity  = request()->get('identity');
         $fieldName = filter_var($identity, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
-        $request->merge([$fieldName => $identity]);
+        request()->merge([$fieldName => $identity]);
         return $fieldName;
     }
 
-    public function login(LoginRequest $request)
+    protected function validateLogin(Request $request)
     {
-        $data = $request->only($this->username($request), 'password');
-        if(Auth::attempt($data) && (Auth::user()->can('isAdmin',5)))
+        $this->validate(
+            $request,
+            [
+                'identity' => 'required|string',
+                'password' => 'required|string',
+            ],
+            [
+                'identity.required' => 'Username or email is required',
+                'password.required' => 'Password is required',
+            ]
+        );
+    }
+
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+       // dd($request->all());
+        $data = $request->only($this->username(), 'password');
+        //dd($data);
+        if(Auth::attempt($data) && (Auth::user()->can('isAdmin')))
         {
             return redirect()->route('admin.dashboard');
 
@@ -69,14 +87,14 @@ class LoginController extends Controller
             }
 
         }
-        return redirect()->back()->with('error','Email or password incorrect ');
+         return redirect()->back()->with('login_error','Email or password incorrect ');
 
     }
 
     public function logout(Request $request)
     {
         //check user admin
-        if(Auth::check() && Auth::user()->can('isAdmin',5))
+        if(Auth::check() && Auth::user()->can('isAdmin'))
         {
             $this->guard()->logout();
              $request->session()->invalidate();

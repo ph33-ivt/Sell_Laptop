@@ -17,7 +17,7 @@ Laptop Shop | List Category
             <a name="" id="" class="btn btn-primary mb-3" href="{{ route('admin.category.create') }}" role="button">Create Category</a>
           <table id="example2" class="table table-bordered table-hover">
             <thead>
-            <tr>
+            <tr style=" color:red;background-color: #3e8409;">
               <th>No</th>
               <th>Name</th>
               <th>Edit</th>

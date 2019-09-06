@@ -11,8 +11,8 @@
                                     <span>Address:</span>
                                 </div>
                                 <div class="footer-info-content2">
-                                    <p>77 Seventh Streeth Banasree
-                                        <br>Road Rampura -2100 Dhaka</p>
+                                    <p>31 Le Duan
+                                        <br>Hai Chau , Da Nang</p>
                                 </div>
                             </div>
                             <div class="footer-address-electro">
@@ -25,9 +25,6 @@
                                 </div>
                             </div>
                             <div class="footer-address-electro">
-                                <div class="footer-info-icon2">
-                                    <span>Email:</span>
-                                </div>
                                 <div class="footer-info-content2">
                                     <p><a href="#">domain@mail.com</a>
                                         <br><a href="#">company@domain.info</a></p>
@@ -41,11 +38,9 @@
                         <h3 class="footer-widget-title-3">My Account</h3>
                         <div class="footer-widget-content-3">
                             <ul>
-                                <li><a href="login.html">Login Hare</a></li>
-                                <li><a href="cart.html">Cart History</a></li>
-                                <li><a href="checkout.html"> Payment History</a></li>
-                                <li><a href="shop.html">Product Tracking</a></li>
-                                <li><a href="register.html">Register</a></li>
+                                <li><a href="{{route('login')}}">Login Hare</a></li>
+                                <li><a href="{{route('user.cart')}}">Cart History</a></li>
+                                <li><a href="{{route('register')}}">Register</a></li>
                             </ul>
                         </div>
                     </div>
@@ -136,7 +131,7 @@
                     <div class="copyright f-right mrg-5">
                         <p>
                             Copyright ©
-                            <a href="https://hastech.company/">LaptopSell</a> 2019 . All Right Reserved.
+                        <a href="{{route('index')}}">LaptopSell</a> 2019 . All Right Reserved.
                         </p>
                     </div>
                 </div>

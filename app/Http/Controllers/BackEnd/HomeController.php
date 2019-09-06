@@ -10,11 +10,10 @@ class HomeController extends Controller
 {
     public function dashboard()
     {
-        if(Auth::check() && Auth::user()->can('isAdmin',5))
+        if(Auth::check() && Auth::user()->can('isAdmin'))
         {
             return view('backend.index');
         }
-
         return redirect()->route('index');
     }
 }

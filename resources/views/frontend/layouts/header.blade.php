@@ -38,25 +38,11 @@
     <div class="header-bottom ptb-40 clearfix">
         <div class="header-bottom-wrapper pr-200 pl-200">
             <div class="logo-3">
-                <a href="index.html">
-                    <img src="asset/img/logo/logo-3.png" alt="">
+                <a href="{{route('index')}}">
+                    <img src="{{asset('img/frontend/logo/logo.png')}}" alt="">
                 </a>
             </div>
             <div class="categories-search-wrapper categories-search-wrapper2">
-                {{-- <div class="all-categories">
-                    <div class="select-wrapper">
-                        <select class="select">
-                            <option value="">All Categories</option>
-                            <option value="">Smartphones </option>
-                            <option value="">Computers</option>
-                            <option value="">Laptops </option>
-                            <option value="">Camerea </option>
-                            <option value="">Watches</option>
-                            <option value="">Lights </option>
-                            <option value="">Air conditioner</option>
-                        </select>
-                    </div>
-                </div> --}}
                 <div class="categories-wrapper">
                     <form action="#">
                         <input placeholder="Enter Your key word" type="text">
@@ -69,7 +55,7 @@
                     <i class="ti-shopping-cart"></i>My Cart
                     <span>02</span>
                 </a>
-                <ul class="cart-dropdown">
+                {{-- <ul class="cart-dropdown">
                     <li class="single-product-cart">
                         <div class="cart-img">
                             <a href="#"><img src="{{ asset('img/frontend/cart/1.jpg') }}" alt=""></a>
@@ -121,7 +107,7 @@
                         <a class="cart-btn btn-hover" href="#">view cart</a>
                         <a class="cart-btn btn-hover" href="#">checkout</a>
                     </li>
-                </ul>
+                </ul> --}}
             </div>
             <div class="mobile-menu-area mobile-menu-none-block electro-2-menu">
                 <div class="mobile-menu">
@@ -139,7 +125,6 @@
                             <li><a href="#">pages</a>
                                 <ul>
                                     <li><a href="about-us.html">about us</a></li>
-                                    <li><a href="menu-list.html">menu list</a></li>
                                     <li><a href="login.html">login</a></li>
                                     <li><a href="register.html">register</a></li>
                                     <li><a href="cart.html">cart page</a></li>
@@ -147,16 +132,7 @@
                                     <li><a href="contact.html">contact</a></li>
                                 </ul>
                             </li>
-                            <li><a href="blog.html">blog</a>
-                                <ul class="single-dropdown">
-                                    <li><a href="blog.html">blog 3 colunm</a></li>
-                                    <li><a href="blog-2-col.html">blog 2 colunm</a></li>
-                                    <li><a href="blog-sidebar.html">blog sidebar</a></li>
-                                    <li><a href="blog-details.html">blog details</a></li>
-                                    <li><a href="blog-details-sidebar.html">blog details 2</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="contact.html"> Contact  </a></li>
+                            <li><a href="#"> Contact  </a></li>
                         </ul>
                     </nav>
                 </div>

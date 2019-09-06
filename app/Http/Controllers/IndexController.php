@@ -18,6 +18,10 @@ class IndexController extends Controller
         //  $topProducts = Product::where('category_id',7)->get();
            //Product::where('category_id','<>',1)->limit(6)->pluck('name');
             return view('frontend.index',compact('productsApple','topProducts'));
+    }
+
+    public function contact()
+    {
 
     }
 }

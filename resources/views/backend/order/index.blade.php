@@ -14,13 +14,10 @@ Laptop Shop | Order
         <!-- /.card-header -->
         <div class="card-body">
             @include('messages.msg')
-                <a name="" id="" class="btn btn-primary mb-2" href="" role="button">Create Order</a>
-
           <table id="example2" class="table table-bordered table-hover">
             <thead>
-            <tr>
+            <tr style=" color:red;background-color: #3e8409;">
               <th>Order ID</th>
-              <th>User Email</th>
               <th>FirstName</th>
               <th>LastName</th>
               <th>Country</th>
@@ -29,7 +26,7 @@ Laptop Shop | Order
               <th>State</th>
               <th>Phone</th>
               <th>Grand_total</th>
-              <th>Product Of Order</th>
+              {{-- <th>Product Of Order</th> --}}
               <th>Order status</th>
               <th>View Detail</th>
             </tr>
@@ -38,7 +35,6 @@ Laptop Shop | Order
                 @foreach ($orders as $order)
             <tr>
                 <td>{{$order->id}}</td>
-                <td>{{$order->user_email}}</td>
                 <td>{{$order->firstname}}</td>
                 <td>{{$order->lastname}}</td>
                 <td>{{$order->country}}</td>
@@ -47,12 +43,38 @@ Laptop Shop | Order
                 <td>{{$order->state}}</td>
                 <td>{{$order->phone}}</td>
                 <td>{{$order->grand_total}}</td>
-                <td>
+                {{-- <td>
                     @foreach ($order->orderdetails as $product)
                             <a href="">{{$product->product_name}}</a><br>
                     @endforeach
+                </td> --}}
+                <td>
+                    <form action="{{route('admin.order.updatestatus')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="order_id" value="{{$order->id}}">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                          <select class="form-control" name="status">
+                                            <option value="New" @if ($order->status == 'New') selected @endif >New</option>
+                                            <option value="Pending" @if ($order->status == 'Pending') selected @endif>Pending</option>
+                                            <option value="Cancelled" @if ($order->status == 'Cancelled') selected @endif>Cancelled</option>
+                                            <option value="In ProsessIn Prosess" @if ($order->status == 'In Prosess') selected @endif>In Prosess</option>
+                                            <option value="Shipped" @if ($order->status == 'Shipped') selected @endif>Shipped</option>
+                                            <option value="Delivered" @if ($order->status == 'Delivered') selected @endif>Delivered</option>
+                                          </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Update">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
                 </td>
-                <td>{{$order->status}}</td>
                 <td><a target="_blank" href="{{route('admin.orderdetail.show',$order->id)}}">View details</a></td>
             </tr>
                 @endforeach

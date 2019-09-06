@@ -5,17 +5,6 @@
 @endsection
 
 @section('content')
-<div class="breadcrumb-area pt-205 pb-210" style="background-image: url(assets/img/bg/breadcrumb.jpg)">
-    <div class="container">
-        <div class="breadcrumb-content text-center">
-            <h2>product details</h2>
-            <ul>
-                <li><a href="#">home</a></li>
-                <li> product details </li>
-            </ul>
-        </div>
-    </div>
-</div>
 <div class="product-details ptb-100 pb-90">
     <div class="container">
         <div class="row">
@@ -23,41 +12,26 @@
                 <div class="product-details-img-content">
                     <div class="product-details-tab mr-70">
                         <div class="product-details-large tab-content">
-                            <div class="tab-pane active show fade" id="pro-details1" role="tabpanel">
+                            <div class="tab-pane active show fade" role="tabpanel">
                                 <div class="easyzoom easyzoom--overlay">
-                                        <img src="{{asset('img/frontend/product/product-details/'.$productDetailsImage)}}" alt="">
+                                        <img src="{{asset('img/frontend/product/product-details/'.$productDetailsImage)}}" alt="" style="width:600px;height:550px;">
                                 </div>
                             </div>
-                             <div class="tab-pane fade" id="pro-details2" role="tabpanel">
+                            @foreach ($productDetailsImageall as $key => $image)
+                             <div class="tab-pane fade" id="pro-details{{$key}}" role="tabpanel">
                                 <div class="easyzoom easyzoom--overlay">
-                                    <a href="assets/img/product-details/bl2.jpg">
-                                        <img src="assets/img/product-details/l2.jpg" alt="">
-                                    </a>
+                                        <img src="{{asset('img/frontend/product/product-details/'.$image)}}" alt="" style="width:600px;height:550px;">
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="pro-details3" role="tabpanel">
-                                <div class="easyzoom easyzoom--overlay">
-                                    <a href="assets/img/product-details/bl3.jpg">
-                                        <img src="assets/img/product-details/l3.jpg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="pro-details4" role="tabpanel">
-                                <div class="easyzoom easyzoom--overlay">
-                                    <a href="assets/img/product-details/bl4.jpg">
-                                        <img src="assets/img/product-details/l4.jpg" alt="">
-                                    </a>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
+
                         <div class="product-details-small nav mt-12" role=tablist>
-                            @foreach ($productDetailsImageall as $image)
-                                 <a class="active mr-12" href="#pro-details1" data-toggle="tab" role="tab" aria-selected="true">
+                            @foreach ($productDetailsImageall as $key => $image)
+                                <a class="mr-12" href="#pro-details{{$key}}" data-toggle="tab" role="tab" aria-selected="true">
                                     <img src="{{asset('img/frontend/product/product-details/'.$image)}} " style="width:141px ; height:135px" alt="">
                                 </a>
                             @endforeach
-
-
                         </div>
                     </div>
                 </div>
@@ -82,27 +56,7 @@
                     <span>${{$productDetails->price}}</span>
                     </div>
                     <p>{{$productDetails->description}}</p>
-                    {{-- <div class="quick-view-select">
-                        <div class="select-option-part">
-                            <label>Size*</label>
-                            <select class="select">
-                                <option value="">- Please Select -</option>
-                                <option value="">xl</option>
-                                <option value="">ml</option>
-                                <option value="">m</option>
-                                <option value="">sl</option>
-                            </select>
-                        </div>
-                        <div class="select-option-part">
-                            <label>Color*</label>
-                            <select class="select">
-                                <option value="">- Please Select -</option>
-                                <option value="">orange</option>
-                                <option value="">pink</option>
-                                <option value="">yellow</option>
-                            </select>
-                        </div>
-                    </div> --}}
+
                     <div class="quickview-plus-minus">
                         <form id="add-cart-form-{{$productDetails->id}}" action="{{route('user.add.cart',$productDetails->id)}}"  method="POST">
                         @csrf
@@ -130,11 +84,11 @@
                     <div class="product-details-cati-tag mt-35">
                         <ul>
                             <li class="categories-title">Categories :</li>
-                            <li><a href="#">fashion</a></li>
-                            <li><a href="#">electronics</a></li>
-                            <li><a href="#">toys</a></li>
-                            <li><a href="#">food</a></li>
-                            <li><a href="#">jewellery</a></li>
+                            <li><a href="#">Apple</a></li>
+                            <li><a href="#">Hp</a></li>
+                            <li><a href="#">dell</a></li>
+                            <li><a href="#">Asus</a></li>
+                            <li><a href="#">Acer</a></li>
                         </ul>
                     </div>
                     <div class="product-details-cati-tag mtb-10">
@@ -205,7 +159,7 @@
         <div class="section-title-3 text-center mb-50">
             <h2>Related products</h2>
         </div>
-        <div class="product-style">
+        {{-- <div class="product-style">
             <div class="related-product-active owl-carousel">
                 <div class="product-wrapper">
                     <div class="product-img">
@@ -366,7 +320,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 

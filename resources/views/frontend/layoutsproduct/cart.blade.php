@@ -5,17 +5,6 @@ Cart
 @endsection
 
 @section('content')
-<div class="breadcrumb-area pt-205 pb-210" style="background-image: url(assets/img/bg/breadcrumb.jpg)">
-    <div class="container">
-        <div class="breadcrumb-content text-center">
-            <h2>Cart Details</h2>
-            <ul>
-                <li><a href="#">Cart</a></li>
-                <li> Cart details </li>
-            </ul>
-        </div>
-    </div>
-</div>
  <!-- shopping-cart-area start -->
  <div class="cart-main-area pt-95 pb-100">
         <div class="container">

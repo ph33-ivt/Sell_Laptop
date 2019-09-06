@@ -73,9 +73,9 @@ class ProductController extends Controller
              \DB::table('carts')->where('session_id',$session_id)->update(['user_email' => $user_email]);
              $userCarts = DB::table('carts')->where(['user_email'=> $user_email])->get();
         }else{
-            //lấy session id ra ngoài
+            //get session id
             $session_id = Session::get('session_id');
-            //lấy tất cả các sản phẩm mà người mua đã mua để show ra
+            //show user card no login
             $userCarts = Cart::where('session_id',$session_id)->get();
             }
           //take image in thumnail in show cart
@@ -145,6 +145,7 @@ class ProductController extends Controller
                 'discount' => $discount,
             ]);
         }
+        //show message for user is order sussecss
         Session::put('order_id',$order_id);
         Session::put('grand_total',$data['grand_total']);
         if($data['payment_method'] == 'COD')
@@ -164,7 +165,8 @@ class ProductController extends Controller
                 'payment_method' => $data['payment_method'],
             ];
 
-            $order = Order::find( $order_id);
+            $order = Order::with('orderdetails')->find($order_id);
+            //dd($orderDetails);
            // \Mail::to($email)->send(new OrderShipped($messageData['email'],$messageData['firstname'],$messageData['lastname'],$messageData['company'],$messageData['address'],$messageData['city'],$messageData['state'],$messageData['zip'],$messageData['phone'],$messageData['grand_total'],$messageData['payment_method']));
            \Mail::to($email)->send(new OrderShipped($order));
             return redirect()->route('user.thanks');

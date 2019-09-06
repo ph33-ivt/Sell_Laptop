@@ -76,8 +76,6 @@ class UserController extends Controller
         $this->authorize('update',User::class);
         $user = User::find($id);
         $listRoles = Role::all();
-        //selected Role of User login
-        //$userOfRoles = \DB::table('role_user')->where('user_id',$id)->get()->pluck('role_id');
         $userOfRoles = $user->roles()->pluck('role_id');
         return view('backend.user.edit',compact('user','listRoles','userOfRoles'));
     }
@@ -99,14 +97,8 @@ class UserController extends Controller
         $user = User::find($id);
         $user->update($data);
         //Update table role_user
-        DB::table('role_user')->where('user_id',$id)->delete();//delete bảng phụ theo user_id sau đó thêm vào lại
+        DB::table('role_user')->where('user_id',$id)->delete();
         $user->roles()->attach($request->roles);
-        //cách 3
-        // if (isset($request->roles)) {
-        //     $user->roles()->sync($request->roles);
-        // } else {
-        //     $user->roles()->sync(array());
-        // }
         return redirect()->route('admin.user.index')->with('success','Update user success');
     }
 
@@ -121,7 +113,6 @@ class UserController extends Controller
         $this->authorize('delete',User::class);
         $user = User::find($id);
         $user->delete();
-        //Delete user of Role in table role_user
         $user->roles()->detach();
         return redirect()->route('admin.user.index')->with('success','Delete user success');
     }

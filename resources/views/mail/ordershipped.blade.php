@@ -7,19 +7,41 @@
     <title>Place Order</title>
 </head>
 <body>
-    <p>Thank you for shopping with us, Your order details below:</p>
-    FirstName  {{$order->firstname}} <br>
-    LastName  {{$order->lastname}} <br>
-    Order Id {{$order->id}} <br>
-    Email  {{$order->user_email}} <br>
-    Company  {{$order->company}} <br>
-    Country  {{$order->country}} <br>
-    Address  {{$order->address}} <br>
-    City  {{$order->city}} <br>
-    State  {{$order->state}} <br>
-    Zip  {{$order->zip}} <br>
-    Phone  {{$order->phone}} <br>
-    Grand_total  {{$order->grand_total}} <br>
-    Payment_method  {{$order->payment_method}} <br>
+    <p>Thank you for shopping with us, Your order below:</p>
+    FirstName  :{{$order->firstname}} <br>
+    LastName : {{$order->lastname}} <br>
+    Email  : {{$order->user_email}} <br>
+    Address : {{$order->address}} <br>
+    Phone  : {{$order->phone}} <br>
+    Payment_method : {{$order->payment_method}} <br>
+    <h4>Detail product for Order </h4>
+    <table class="table" style="border:1;">
+        <thead>
+            <tr>
+                <th>Order_ID</th>
+                <th>Product_ID</th>
+                <th>Product_Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Discount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($order->orderdetails as $orderDetail)
+            <tr>
+                <td>{{$orderDetail->order_id}}</td>
+                <td>{{$orderDetail->product_id}}</td>
+                <td>{{$orderDetail->product_name}}</td>
+                <td>{{$orderDetail->price}}</td>
+                <td>{{$orderDetail->quantity}}</td>
+                <td>{{$orderDetail->quantity}}</td>
+            </tr>
+            @endforeach
+            <tr>
+                    <td rowspan="4"><strong>grand_total</strong></td>
+                    <td>${{$order->grand_total}}</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

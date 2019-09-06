@@ -23,7 +23,7 @@ Auth::routes();
 Route::group(['prefix' => 'admin',
              'namespace' => 'BackEnd',
              'as'   => 'admin.',
-             'middleware' => 'auth'
+             'middleware' => 'admin'
              ],
              function () {
             Route::get('/dashboard','HomeController@dashboard')->name('dashboard');
@@ -34,11 +34,12 @@ Route::group(['prefix' => 'admin',
             Route::resource('product', 'ProductController');
             Route::resource('order', 'OrderController');
             Route::resource('orderdetail', 'OrderDetailController');
+            Route::post('updatestatus', 'OrderController@updatestatus')->name('order.updatestatus');
 });
-
  //User
 Route::get('/account','Auth\LoginController@account')->name('account');
 Route::get('/','IndexController@index')->name('index');
+Route::get('contact','IndexController@contact')->name('contact');
 
 Route::group(['prefix' => 'user',
             'namespace' => 'FrontEnd',
@@ -58,7 +59,7 @@ Route::group(['prefix' => 'user',
 Route::group(['prefix' => 'user',
             'namespace' => 'FrontEnd',
             'as' => 'user.',
-            'middleware' => 'auth',
+            'middleware' => 'user',
              ],
         function () {
             Route::get('checkout','ProductController@checkout')->name('checkout');
