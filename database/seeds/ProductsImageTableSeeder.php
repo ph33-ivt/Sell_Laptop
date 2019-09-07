@@ -477,6 +477,23 @@ class ProductsImageTableSeeder extends Seeder
                 'product_id' => 27,
                 'image' => 'asus5,4.jpg'
             ],
+            //asus 6
+            [
+                'product_id' => 28,
+                'image' => 'asus6,1.jpg'
+            ],
+            [
+                'product_id' => 28,
+                'image' => 'asus6,2.jpg'
+            ],
+            [
+                'product_id' => 28,
+                'image' => 'asus6,3.jpg'
+            ],
+            [
+                'product_id' => 28,
+                'image' => 'asus6,4.jpg'
+            ],
 
         ];
         DB::table('products_images')->insert($data);

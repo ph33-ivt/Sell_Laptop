@@ -12,11 +12,9 @@
                             <ul>
                             <li><a href="{{route('index')}}">home</a>
                                     <ul class="single-dropdown">
-                                        <li><a href="index.html">Apple</a></li>
-                                        <li><a href="index-fashion-2.html">HP</a></li>
-                                        <li><a href="index-fruits.html">DEll</a></li>
-                                        <li><a href="index-book.html">Asus</a></li>
-                                        <li><a href="index-electronics.html">Acer</a></li>
+                                        @foreach ($categories as $category)
+                                        <li><a href="{{route('user.category',$category->id)}}">{{$category->name}}</a></li>
+                                        @endforeach
                                     </ul>
                                 </li>
                                 <li><a href="#">pages</a>
@@ -66,11 +64,9 @@
                                 <ul class="menu-overflow">
                                     <li><a href="#">HOME</a>
                                         <ul>
-                                            <li><a href="index.html">Apple</a></li>
-                                            <li><a href="index-fashion-2.html">HP</a></li>
-                                            <li><a href="index-fruits.html">DEll</a></li>
-                                            <li><a href="index-book.html">Asus</a></li>
-                                            <li><a href="index-electronics.html">Acer</a></li>
+                                            @foreach ($categories as $category)
+                                            <li><a href="{{route('user.category',$category->id)}}">$category->name</a></li>
+                                            @endforeach
                                         </ul>
                                     </li>
                                     <li><a href="#">pages</a>

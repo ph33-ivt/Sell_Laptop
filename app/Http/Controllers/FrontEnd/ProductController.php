@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProductsImagesController;
+use App\Category;
 use App\Product;
 use App\ProductsImages;
 use Auth;
@@ -19,12 +20,15 @@ use App\Http\Requests\FrontEnd\PlaceOrderRequest;
 
 class ProductController extends Controller
 {
+
+
     public function details($id)
     {
+        $categories = Category::all();
         $productDetails = Product::find($id);
         $productDetailsImage = ProductsImages::where('product_id',$id)->pluck('image')->first();
         $productDetailsImageall = ProductsImages::where('product_id',$id)->pluck('image');
-        return view('frontend.layoutsproduct.details',compact('productDetails','productDetailsImage','productDetailsImageall'));
+        return view('frontend.layoutsproduct.details',compact('productDetails','productDetailsImage','productDetailsImageall','categories'));
     }
 
     public function addcart(Request $request, $id)
@@ -67,6 +71,7 @@ class ProductController extends Controller
 
     public function cart()
     {
+        $categories = Category::all();
         if(Auth::check()){
             $user_email = Auth::user()->email;
             $session_id = Session::get('session_id');
@@ -85,7 +90,7 @@ class ProductController extends Controller
               $userCarts[$key]->image  = $productDetailsImage;
           }
           //$productDetailsImage = ProductsImages::where('product_id',$id)->pluck('image')->first();
-        return view('frontend.layoutsproduct.cart',compact('userCarts'));
+        return view('frontend.layoutsproduct.cart',compact('userCarts','categories'));
     }
 
     public function deletecart($id)
@@ -108,6 +113,7 @@ class ProductController extends Controller
 
     public function checkout(Request $request)
     {
+        $categories = Category::all();
         $user_id = Auth::user()->id;
         $user_email = Auth::user()->email;
 
@@ -117,11 +123,12 @@ class ProductController extends Controller
 
         //get cart table of user login
         $userCarts = DB::table('carts')->where(['user_email' => $user_email])->get();
-        return view('frontend.layoutsproduct.checkout',compact('user_email','user_id','userCarts'));
+        return view('frontend.layoutsproduct.checkout',compact('user_email','user_id','userCarts','categories'));
     }
 
     public function placeorder(PlaceOrderRequest $request)
     {
+
         $user_id = Auth::user()->id;
         $user_email = Auth::user()->email;
         //$order_id = \DB::table('orders')->where('user_id',$user_id)->first();
@@ -174,9 +181,10 @@ class ProductController extends Controller
     }
     public function thanks()
     {
+        $categories = Category::all();
         $user_email = Auth::user()->email;
         //delete  userCarts in Cart table
         $userCarts = DB::table('carts')->where(['user_email' => $user_email])->delete();
-        return view('frontend.layoutsproduct.thanks');
+        return view('frontend.layoutsproduct.thanks','categories');
     }
 }

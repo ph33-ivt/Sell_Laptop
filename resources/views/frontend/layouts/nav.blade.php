@@ -5,23 +5,11 @@
                 <h3>All Departments</h3>
                 <div class="category-menu-list">
                     <ul>
-                        <li>
-                            <a href="#"><img alt="" src="{{asset('img/frontend/icon-img/15.png')}}">Apple</i></a>
-                        <li>
-                            <a href="#"><img alt="" src="{{asset('img/frontend/icon-img/15.png') }}">HP </a>
-                        </li>
-                        <li>
-                            <a href="#"><img alt="" src="{{asset('img/frontend/icon-img/15.png') }}"> DELL</a>
-                        </li>
-                        <li>
-                            <a href="#"><img alt="" src="{{asset('img/frontend/icon-img/15.png') }}"> ASUS </a>
-                        </li>
-                        <li>
-                            <a href="#"><img alt="" src="{{asset('img/frontend/icon-img/15.png') }}"> ACER </a>
-                        </li>
-                        <li>
-                            <a href="#"><img alt="" src="{{asset('img/frontend/icon-img/15.png') }}">Others Equipment</a>
-                        </li>
+                        @foreach ($categories as $category)
+                            <li>
+                                <a href="{{route('user.category',$category->id)}}"><img alt="" src="{{asset('img/frontend/icon-img/15.png')}}">{{$category->name}}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -31,11 +19,9 @@
                 <ul>
                 <li><a href="{{route('index')}}">home<i class="pe-7s-angle-down"></i> <span class="sticker-new">hot</span></a>
                         <ul class="single-dropdown">
-                            <li><a href="index.html">Apple</a></li>
-                            <li><a href="index-fashion-2.html">HP</a></li>
-                            <li><a href="index-fruits.html">DEll</a></li>
-                            <li><a href="index-book.html">Asus</a></li>
-                            <li><a href="index-electronics.html">Acer</a></li>
+                                @foreach ($categories as $category)
+                                <li><a href="{{route('user.category',$category->id)}}">{{$category->name}}</a></li>
+                                @endforeach
                         </ul>
                     </li>
                     <li><a href="#">page </a>
@@ -60,7 +46,7 @@
                 <div class="slider-content-4 fadeinup-animated">
                     <h2 class="animated">Say hello! to the <br>future.</h2>
                     <h4 class="animated">Best Product With warranty  </h4>
-                    <a class="electro-slider-btn btn-hover animated" href="#">buy now</a>
+                <a class="electro-slider-btn btn-hover animated" href="{{url('user/product/1')}}">buy now</a>
                 </div>
             </div>
         </div>
@@ -69,7 +55,7 @@
                 <div class="slider-content-4 fadeinup-animated">
                     <h2 class="animated">Laptop game to <br>future.</h2>
                     <h4 class="animated">Best Product With warranty  </h4>
-                    <a class="electro-slider-btn btn-hover animated" href="#">buy now</a>
+                    <a class="electro-slider-btn btn-hover animated" href="{{url('/user/product/28')}}">buy now</a>
                 </div>
             </div>
         </div>

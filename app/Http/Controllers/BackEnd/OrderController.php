@@ -17,8 +17,8 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::with('orderdetails')->orderBy('id','Desc')->get();
-        //$orderDetail = $order->orderdetails()->get();
-        //d($orderDetail);
+       // $orderDetail = $orders->orderdetails->get();
+       // dd($orders);
         return view('backend.order.index',compact('orders'));
     }
 
@@ -51,7 +51,10 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+                //dd($id);
+                $order = Order::find($id);
+                $orderdetails = OrderDetail::where('order_id',$id)->get();
+                return view('backend.order.show',compact('orderdetails','order'));
     }
 
     /**

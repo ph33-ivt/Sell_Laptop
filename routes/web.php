@@ -33,7 +33,6 @@ Route::group(['prefix' => 'admin',
             Route::resource('category', 'CategoryController');
             Route::resource('product', 'ProductController');
             Route::resource('order', 'OrderController');
-            Route::resource('orderdetail', 'OrderDetailController');
             Route::post('updatestatus', 'OrderController@updatestatus')->name('order.updatestatus');
 });
  //User
@@ -46,8 +45,9 @@ Route::group(['prefix' => 'user',
             'as' => 'user.'
              ],
         function () {
+
             Route::get('product/{id}','ProductController@details')->name('product.details');
-            Route::get('category','CategoryController@index')->name('category');
+            Route::get('category/{id}','CategoryController@index')->name('category');
             Route::post('addtocart/{id}','ProductController@addcart')->name('add.cart');
             Route::get('cart','ProductController@cart')->name('cart');
             Route::put('cart/{id}/update', 'ProductController@updatecart')->name('update.cart');

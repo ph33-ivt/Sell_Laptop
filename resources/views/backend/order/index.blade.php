@@ -26,7 +26,6 @@ Laptop Shop | Order
               <th>State</th>
               <th>Phone</th>
               <th>Grand_total</th>
-              {{-- <th>Product Of Order</th> --}}
               <th>Order status</th>
               <th>View Detail</th>
             </tr>
@@ -43,11 +42,6 @@ Laptop Shop | Order
                 <td>{{$order->state}}</td>
                 <td>{{$order->phone}}</td>
                 <td>{{$order->grand_total}}</td>
-                {{-- <td>
-                    @foreach ($order->orderdetails as $product)
-                            <a href="">{{$product->product_name}}</a><br>
-                    @endforeach
-                </td> --}}
                 <td>
                     <form action="{{route('admin.order.updatestatus')}}" method="post">
                         @csrf
@@ -75,7 +69,7 @@ Laptop Shop | Order
                         </table>
                     </form>
                 </td>
-                <td><a target="_blank" href="{{route('admin.orderdetail.show',$order->id)}}">View details</a></td>
+                <td><a target="_blank" href="{{route('admin.order.show',$order->id)}}">View details</a></td>
             </tr>
                 @endforeach
           </table>

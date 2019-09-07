@@ -4,6 +4,8 @@ namespace App\Http\Controllers\FrontEnd;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Product;
+use App\Category;
 
 class CategoryController extends Controller
 {
@@ -12,9 +14,13 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return view('frontend.layoutsproduct.category');
+
+        $productsOfCategory = Product::where('category_id',$id)->paginate(4);
+        //count product of category
+        $categories = Category::withCount('products')->orderBy('id')->get();
+        return view('frontend.layoutsproduct.category',compact('productsOfCategory','categories'));
     }
 
     /**

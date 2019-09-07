@@ -421,6 +421,22 @@ class ProductTableSeeder extends Seeder
                 'card' => '',
                 'quantity' => 4,
             ],
+            [
+                'name' => 'Asus ROG Mothership (GZ700)',
+                'category_id' => 4,
+                'image' => 'asus6.jpg',
+                'description' => 'Laptops limit cooling and lock you into a fixed position that’s needlessly rigid for desktop replacements, so we’ve reimagined the form factor to raise your game',
+                'price' => 3000 ,
+                'color' => 'black' ,
+                'weight' => '2.4kg',
+                'cpu' => 'Intel Core i9-8950HK ',
+                'ram' => ' RAM:32GB  ',
+                'hdd' => 'SSD 1T GB',
+                'os' => 'Windows 10 Ultimate',
+                'card' => 'NVIDIA GeForce RTX 2080',
+                'quantity' => 4,
+            ],
+
 
             // Top -product
             // [
