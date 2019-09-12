@@ -14,7 +14,9 @@ Laptop Shop | Product
         <!-- /.card-header -->
         <div class="card-body">
             @include('messages.msg')
+            @can('create', App\Product::class)
                 <a name="" id="" class="btn btn-primary mb-2" href="{{ route('admin.product.create') }}" role="button">Create Product</a>
+            @endcan
           <table id="example2" class="table table-bordered table-hover">
             <thead>
             <tr style=" color:red;background-color: #3e8409;">
@@ -40,17 +42,21 @@ Laptop Shop | Product
                 <td>{{$product->weight}}</td>
                 <td>{{$product->ram}}</td>
                 <td>{{$product->quantity}}</td>
-               
+
                 <td><img src="{{asset('img/frontend/product/all/'.$product->image)}}" alt="" style="width: 150px;height:150px;"></td>
             <td>
+                @can('update', App\Product::class)
                 <a href="{{route('admin.product.edit', $product->id)}}"><i class="far fa-edit"></i></a>
+                @endcan
             </td>
             <td>
                 <form id="delete-form-{{$product->id}}" action="{{route('admin.product.destroy',$product->id)}}" style="display:none" method="POST">
                     @csrf
                     @method('DELETE')
                 </form>
+                @can('delete', App\Product::class)
                 <a href="javascript:document.getElementById('delete-form-{{$product->id}}').submit();" onclick=" return confirm('Are you sure?') "><i class="far fa-trash-alt"></i></a>
+                @endcan
             </td>
             </tr>
                 @endforeach

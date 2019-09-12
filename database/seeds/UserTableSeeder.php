@@ -13,12 +13,12 @@ class UserTableSeeder extends Seeder
     {
        $users =  [
             [
-                'name' => 'Master',
+                'name' => 'master',
                 'email' => 'master@gmail.com',
                 'password' => bcrypt('master'),
             ],
             [
-                'name' => 'Admin',
+                'name' => 'admin',
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt('admin'),
             ],
@@ -38,14 +38,14 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('nguyen'),
             ],
             [
-                'name' => 'Nguyen Anh',
-                'email' => 'nguyenanh@hbc.com',
-                'password' => bcrypt('nguyenanh'),
+                'name' => 'tran anh',
+                'email' => 'trananh@hbc.com',
+                'password' => bcrypt('trananh'),
             ],
             [
-                'name' => 'Tran loc',
+                'name' => 'nguyen loc',
                 'email' => 'loc322@hbc.com',
-                'password' => bcrypt('tranloc'),
+                'password' => bcrypt('nguyenloc'),
             ],
 
         ];

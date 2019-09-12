@@ -14,7 +14,9 @@ Laptop Shop | List Category
         <!-- /.card-header -->
         <div class="card-body">
             @include('messages.msg')
+            @can('create', App\Category::class)
             <a name="" id="" class="btn btn-primary mb-3" href="{{ route('admin.category.create') }}" role="button">Create Category</a>
+            @endcan
           <table id="example2" class="table table-bordered table-hover">
             <thead>
             <tr style=" color:red;background-color: #3e8409;">
@@ -30,14 +32,18 @@ Laptop Shop | List Category
               <td>{{$loop->index +1}}</td>
                 <td>{{$category->name}}</td>
             <td>
+                @can('update', App\Category::class)
                 <a href="{{route('admin.category.edit', $category->id)}}"><i class="far fa-edit"></i></a>
+                @endcan
             </td>
             <td>
                 <form id="delete-form-{{$category->id}}" action="{{route('admin.category.destroy',$category->id)}}" style="display:none" method="post">
                     @csrf
                     @method('DELETE')
                 </form>
+                @can('delete', App\Category::class)
                 <a href="javascript:document.getElementById('delete-form-{{$category->id}}').submit();" onclick=" return confirm('Are you sure?') "><i class="far fa-trash-alt"></i></a>
+                @endcan
             </td>
             </tr>
                 @endforeach

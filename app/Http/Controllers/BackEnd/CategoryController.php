@@ -17,6 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewindex',Category::class);
         $categories = Category::all();
         return view('backend.category.index',compact('categories'));
     }
@@ -28,7 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-
+        $this->authorize('create',Category::class);
         return view('backend.category.create');
     }
 
@@ -40,6 +41,7 @@ class CategoryController extends Controller
      */
     public function store(CategoryCreateRequest $request)
     {
+        $this->authorize('create',Category::class);
         $data = $request->except('_token');
         $category = Category::create($data);
         return redirect()->route('admin.category.index')->with('success','Created category success');
@@ -64,7 +66,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-
+        $this->authorize('update',Category::class);
         $category = Category::find($id);
         return view('backend.category.edit',compact('category'));
     }
@@ -78,6 +80,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('update',Category::class);
         $data = $request->except('_token');
         $category = Category::find($id);
         $category->update($data);
@@ -93,7 +96,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete',Category::class);
         $category = Category::find($id);
+        $category->products()->delete();
         $category->delete();
         return redirect()->route('admin.category.index')->with('success','Delete category success');
     }

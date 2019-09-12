@@ -42,6 +42,18 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm()
+    {
+        if(Auth::user() && Auth::user()->can('isAdmin'))
+        {
+            return redirect()->route('admin.dashboard');
+        }elseif(Auth::user())
+        {
+            return redirect()->route('index');
+        }
+        return view('auth.login');
+    }
+
     public function username()
     {
         $identity  = request()->get('identity');

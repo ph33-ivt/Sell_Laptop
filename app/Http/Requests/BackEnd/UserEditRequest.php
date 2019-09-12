@@ -25,8 +25,7 @@ class UserEditRequest extends FormRequest
     {
         return [
             'name' => 'required|min:4',
-            'email'=> 'required|max:35|email',
-            'password' => 'required|min:6',
+            'password' => 'required|min:6|confirmed',
             'roles' => 'required'
 
         ];
@@ -36,12 +35,10 @@ class UserEditRequest extends FormRequest
     {
         return [
             'name.required' => 'Enter name required',
-            'name.min' => 'nter name minimum  4 character',
-            'email.email' => 'Enter email style email ',
-            'email.required' => 'a email is required',
-            'email.max' => 'Enter name maximum 35 character',
+            'name.min' => 'Enter name minimum  4 character',
             'password.required' => 'a password is required',
             'password.min' => 'Enter password minimum  4 character',
+            'password.confirmed' => 'Enter password confirm same password',
             'roles.required' => 'a role is required'
         ];
     }

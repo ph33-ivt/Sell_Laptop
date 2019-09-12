@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-
+        $this->authorize('viewindex',Product::class);
         $products = Product::orderBy('id','desc')->paginate(8);
         return view('backend.product.index',compact('products'));
     }
@@ -32,6 +32,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $this->authorize('create',Product::class);
         $listCategories = Category::all();
         return view('backend.product.create',compact('listCategories'));
     }
@@ -44,6 +45,7 @@ class ProductController extends Controller
      */
     public function store(ProductCreateRequest $request)
     {
+        $this->authorize('create',Product::class);
         $imagename = \DB::table('categories')->where('id',$request->category_id)->pluck('name')->get(0);
         if ($request->hasfile('image')){
             $file = $request->file('image');
@@ -57,13 +59,9 @@ class ProductController extends Controller
         }
         $data = $request->except('_token','image');
         $data['image'] = $filename;
-        if(Product::where('name',$data['name'])->where('category_id',$data['category_id']))
-        {
-            return redirect()->back()->with('error','Product a exsits');
-        }else{
+
             Product::create($data);
             return redirect()->route('admin.product.index')->with('success','Created product success');
-        }
 
     }
 
@@ -86,6 +84,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('update',Product::class);
         $listCategories = Category::all();
         $product = Product::find($id);
         $categoryOfProduct = $product->category()->pluck('id');
@@ -101,6 +100,7 @@ class ProductController extends Controller
      */
     public function update(ProductEditRequest $request, $id)
     {
+        $this->authorize('update',Product::class);
         $product = Product::find($id);
         $imagename = \DB::table('categories')->where('id',$request->category_id)->pluck('name')->get(0);
         if ($request->hasfile('image')){
@@ -129,6 +129,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete',Product::class);
         $product = Product::find($id);
         $product->delete();
         return redirect()->route('admin.product.index')->with('success','Delete product success');

@@ -19,7 +19,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-      //  $this->authorize('viewindex',Role::class);
+        $this->authorize('viewindex',Role::class);
         $roles = Role::all();
         return view('backend.role.index',compact('roles'));
     }
@@ -93,7 +93,7 @@ class RoleController extends Controller
         $role = Role::find($id);
         $role->update($data);
         //update permission_role
-        //b1 delete row have role id in table permission_role then create
+        // delete row have role id in table permission_role then create
     //  DB::table('permission_role')->where('role_id',$id)->delete();
         $role->permissions()->detach();
         $role->permissions()->attach($request->permissions);

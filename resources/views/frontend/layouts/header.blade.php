@@ -44,9 +44,9 @@
             </div>
             <div class="categories-search-wrapper categories-search-wrapper2">
                 <div class="categories-wrapper">
-                    <form action="#">
-                        <input placeholder="Enter Your key word" type="text">
-                        <button type="button"> Search </button>
+                    <form action="{{route('user.search')}}">
+                        <input placeholder="Enter Your key word" type="text" name="product">
+                        <button type="submit"> Search </button>
                     </form>
                 </div>
             </div>

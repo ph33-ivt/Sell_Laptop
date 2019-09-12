@@ -16,6 +16,7 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewindex',Order::class);
         $orders = Order::with('orderdetails')->orderBy('id','Desc')->get();
        // $orderDetail = $orders->orderdetails->get();
        // dd($orders);

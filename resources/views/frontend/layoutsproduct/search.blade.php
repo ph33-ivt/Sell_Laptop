@@ -114,6 +114,11 @@ Category
                         <div class="shop-bar pb-60">
                             <div class="shop-found-selector">
                                 <div class="shop-found">
+                                    @if($productsOfCategory->total() > 0)
+                                        <p><span>{{$productsOfCategory->total()}}</span> Product Found of <span>{{$countProducts}}</span></p>
+                                    @else
+                                    <p> Product Not Found </p>
+                                    @endif
                                 </div>
                             </div>
                         </div>

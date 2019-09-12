@@ -65,7 +65,7 @@
                         <div class="copyright">
                             <p>
                                 Copyright ©
-                                <a href="https://hastech.company/">Laptop Sell</a> 2019 . All Right Reserved.
+                                <a href="{{route('index')}}">Laptop Sell</a> 2019 . All Right Reserved.
                             </p>
                         </div>
                     </div>

@@ -14,29 +14,17 @@ Laptop Shop | Order Detail
                   <!-- /.card-header -->
                   <div class="card-body">
                         @include('messages.msg')
-                    <table id="example2" class="table table-bordered table-hover">
-                      <thead>
-                      <tr style=" color:red;background-color: #4abff8;">
-                        <th>Order ID</th>
-                        <th>Email</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Phone</th>
-                        <th>Payment_method</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-
-                      <tr>
-                          <td>{{$order->id}}</td>
-                          <td>{{$order->user_email}}</td>
-                          <td>{{$order->firstname}}</td>
-                          <td>{{$order->lastname}}</td>
-                          <td>{{$order->phone}}</td>
-                          <td>{{$order->payment_method}}</td>
-                      </tr>
-                    </table>
-                  </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="order-id">
+                                    <label for="">Order Id : {{$order->id}}</label><br>
+                                    <label for="">Email  : {{$order->user_email}}</label><br>
+                                    <label for="">FirstName  : {{$order->firstname}}</label><br>
+                                    <label for="">LastName  : {{$order->lastname}}</label><br>
+                                    <label for="">Payment_method  : {{$order->payment_method}}</label><br>
+                                </div>
+                            </div>
+                    </div>
                   <!-- /.card-body -->
                 </div>
               </div>

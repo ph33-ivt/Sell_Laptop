@@ -92,8 +92,9 @@ class UserController extends Controller
 
         //Update table user
         $this->authorize('update',User::class);
-        $data = $request->only('name','email','password');
+        $data = $request->only('name','password','password_confirmation');
         $data['password'] = bcrypt($request->password);
+        $data['password_confirmation'] = $data['password'];
         $user = User::find($id);
         $user->update($data);
         //Update table role_user

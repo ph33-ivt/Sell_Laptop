@@ -32,15 +32,6 @@ class CategoryTableSeeder extends Seeder
                 'name' => 'acer',
 
             ],
-            // [
-            //     'name' => 'bestsell',
-
-            // ],
-            // [
-            //     'name' => 'top_product',
-
-            // ],
-
         ];
         DB::table('categories')->insert($data);
     }

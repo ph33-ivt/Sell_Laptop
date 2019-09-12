@@ -21,22 +21,13 @@ Laptop Shop | Edit User
                         @method('PUT')
                         <div class="card-body">
                             <div class="form-group">
-                            <label for="name">Name<span style="color:red">*</span></label>
-                            <input type="name" class="form-control" id="name" name="name" placeholder="Enter name" value="{{ $user->name}}" >
-                            @if ($errors->has('name'))
-                            <p class="help-block" style="color:red">
-                                {{ $errors->first('name') }}
-                            </p>
-                            @endif
-                            </div>
-                            <div class="form-group">
-                            <label for="email">Email address<span style="color:red">*</span></label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" value="{{ $user->email }}" >
-                            @if ($errors->has('email'))
-                            <p class="help-block" style="color:red">
-                                {{ $errors->first('email') }}
-                            </p>
-                            @endif
+                                <label for="name">Name<span style="color:red">*</span></label>
+                                <input type="name" class="form-control" id="name" name="name" placeholder="Enter name" value="{{ $user->name}}" >
+                                @if ($errors->has('name'))
+                                <p class="help-block" style="color:red">
+                                    {{ $errors->first('name') }}
+                                </p>
+                                @endif
                             </div>
                             <div class="form-group">
                             <label for="password">Password<span style="color:red">*</span></label>
@@ -47,6 +38,10 @@ Laptop Shop | Edit User
                                 </p>
                             @endif
                             </div>
+                            <div class="form-group">
+                                    <label for="password">Confirm password<span style="color:red">*</span></label>
+                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Retype password" value="" >
+                                </div>
                             <div class="form-group">
                                 <label>Select Role for User<span style="color:red">*</span></label>
                                 <select multiple class="form-control" name="roles[]">

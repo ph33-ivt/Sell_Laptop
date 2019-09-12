@@ -24,16 +24,9 @@
                                 @endforeach
                         </ul>
                     </li>
-                    <li><a href="#">page </a>
-                        <ul class="single-dropdown">
-                            <li><a href="about-us.html">about us</a></li>
-                            <li><a href="{{route('login')}}">login</a></li>
-                            <li><a href="{{route('register')}}">register</a></li>
-                            <li><a href="{{route('user.cart')}}">cart page</a></li>
-                            <li><a href="{{route('contact')}}">contact</a></li>
-                        </ul>
+                    <li><a href="#">About Us </a>
                     </li>
-                    <li><a href="#">contact</a></li>
+                    <li><a href="{{route('contact')}}">contact</a></li>
                 </ul>
             </nav>
         </div>

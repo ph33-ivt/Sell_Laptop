@@ -74,7 +74,46 @@ class PermissionTableSeeder extends Seeder
                 'name'        => 'delete-permission',
                 'display_name' => 'Delete Permission',
             ],
-
+            [
+                'name'        => 'view-product',
+                'display_name' => 'View Product',
+            ],
+            [
+                'name'        => 'create-product',
+                'display_name' => 'Create Product',
+            ],
+            [
+                'name'        => 'edit-product',
+                'display_name' => 'Edit Product',
+            ],
+            [
+                'name'        => 'delete-product',
+                'display_name' => 'Delete Product',
+            ],
+            [
+                'name'        => 'view-category',
+                'display_name' => 'View Category',
+            ],
+            [
+                'name'        => 'create-category',
+                'display_name' => 'Create Category',
+            ],
+            [
+                'name'        => 'edit-category',
+                'display_name' => 'Edit Category',
+            ],
+            [
+                'name'        => 'delete-category',
+                'display_name' => 'Delete Category',
+            ],
+            [
+                'name'        => 'view-order',
+                'display_name' => 'View Order',
+            ],
+             [
+                'name'        => 'update-status-order',
+                'display_name' => 'Update status Order',
+            ],
 
         ];
         DB::table('Permissions')->insert($permissions);

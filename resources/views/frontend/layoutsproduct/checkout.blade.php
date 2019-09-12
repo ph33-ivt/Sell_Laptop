@@ -10,7 +10,6 @@ CheckOut
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    @include('messages.msg')
                     <div class="coupon-accordion">
                         <!-- ACCORDION START -->
                         <h3>Returning customer? <span id="showlogin">Click here to login</span></h3>
@@ -306,12 +305,22 @@ CheckOut
                                         <div class="checkout-form-list">
                                             <label>First Name <span class="required">*</span></label>
                                         <input type="text" placeholder="First Name" name="firstname" value="{{old('firstname')}}"/>
+                                            @if ($errors->has('firstname'))
+                                            <p class="help-block" style="color:red">
+                                                {{ $errors->first('firstname') }}
+                                            </p>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
                                             <label>Last Name <span class="required">*</span></label>
                                             <input type="text" placeholder="Last Name" name="lastname" value="{{old('lastname')}}"/>
+                                            @if ($errors->has('lastname'))
+                                                <p class="help-block" style="color:red">
+                                                    {{ $errors->first('lastname') }}
+                                                </p>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -324,12 +333,22 @@ CheckOut
                                         <div class="checkout-form-list">
                                             <label>Address <span class="required">*</span></label>
                                             <input type="text" placeholder="Street address" name="address" value="{{old('address')}}"/>
+                                            @if ($errors->has('address'))
+                                                <p class="help-block" style="color:red">
+                                                    {{ $errors->first('address') }}
+                                                </p>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
                                             <label>City <span class="required">*</span></label>
                                             <input type="text" name="city" placeholder="City" value="{{old('city')}}"  />
+                                            @if ($errors->has('city'))
+                                                <p class="help-block" style="color:red">
+                                                    {{ $errors->first('city') }}
+                                                </p>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -348,6 +367,11 @@ CheckOut
                                         <div class="checkout-form-list">
                                             <label>Phone  <span class="required" >*</span></label>
                                             <input type="text" name="phone" value="{{old('phone')}}" />
+                                             @if ($errors->has('phone'))
+                                                <p class="help-block" style="color:red">
+                                                    {{ $errors->first('phone') }}
+                                                </p>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

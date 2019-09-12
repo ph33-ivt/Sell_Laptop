@@ -37,7 +37,11 @@
                 </div>
             </div>
             <div class="col-md-12 col-lg-5 col-12">
-                    @include('messages.msg')
+                @if(session()->has('error'))
+                    <div class="alert alert-danger">
+                    {{ session()->get('error') }}
+                    </div>
+                 @endif
                 <div class="product-details-content">
                 <h3>{{$productDetails->name}}  {{$productDetails->cpu}} {{$productDetails->ram}}/{{$productDetails->hdd}} {{ $productDetails->os}} {{$productDetails->card}}</h3>
                     <div class="rating-number">
@@ -80,25 +84,30 @@
                                 <a class="btn-hover" href="#"><i class="pe-7s-like"></i></a>
                             </div>
                     </div>
+                    @if ($errors->has('quantity'))
+                        <p class="help-block" style="color:red">
+                            {{ $errors->first('quantity') }}
+                        </p>
+                    @endif
 
                     <div class="product-details-cati-tag mt-35">
                         <ul>
                             <li class="categories-title">Categories :</li>
-                            <li><a href="#">Apple</a></li>
-                            <li><a href="#">Hp</a></li>
-                            <li><a href="#">dell</a></li>
-                            <li><a href="#">Asus</a></li>
-                            <li><a href="#">Acer</a></li>
+                            @foreach ($categories as $category)
+                             <li><a href="{{route('user.category',$category->id)}}">{{$category->name}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="product-details-cati-tag mtb-10">
                         <ul>
+
                             <li class="categories-title">Tags :</li>
-                            <li><a href="#">fashion</a></li>
-                            <li><a href="#">electronics</a></li>
-                            <li><a href="#">toys</a></li>
+                            <li><a href="#">macbook air</a></li>
+                            <li><a href="#">Hp</a></li>
+                            <li><a href="#">Asus</a></li>
                             <li><a href="#">food</a></li>
                             <li><a href="#">jewellery</a></li>
+
                         </ul>
                     </div>
                     <div class="product-share">
@@ -159,168 +168,26 @@
         <div class="section-title-3 text-center mb-50">
             <h2>Related products</h2>
         </div>
-        {{-- <div class="product-style">
+        <div class="product-style">
             <div class="related-product-active owl-carousel">
+                @foreach ($productRelates as $product)
                 <div class="product-wrapper">
                     <div class="product-img">
-                        <a href="#">
-                            <img src="assets/img/product/fashion-colorful/1.jpg" alt="">
+                        <a href="{{route('user.product.details',$product->id)}}">
+                            <img src="{{ asset('/img/frontend/product/all/'.$product->image) }}" alt="" style="width:250px;height:300px;">
                         </a>
-                        <span>hot</span>
+                        {{-- <span>hot</span> --}}
                         <div class="product-action">
-                            <a class="animate-left" title="Wishlist" href="#">
-                                <i class="pe-7s-like"></i>
-                            </a>
-                            <a class="animate-top" title="Add To Cart" href="#">
-                                <i class="pe-7s-cart"></i>
-                            </a>
-                            <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="pe-7s-look"></i>
-                            </a>
                         </div>
                     </div>
                     <div class="product-content">
-                        <h4><a href="#">Arifo Stylas Dress</a></h4>
-                        <span>$115.00</span>
+                        <h4><a href="{{route('user.product.details',$product->id)}}">{{$product->name}}</a></h4>
+                    <span>${{$product->price}}</span>
                     </div>
                 </div>
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="#">
-                            <img src="assets/img/product/fashion-colorful/2.jpg" alt="">
-                        </a>
-                        <div class="product-action">
-                            <a class="animate-left" title="Wishlist" href="#">
-                                <i class="pe-7s-like"></i>
-                            </a>
-                            <a class="animate-top" title="Add To Cart" href="#">
-                                <i class="pe-7s-cart"></i>
-                            </a>
-                            <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="pe-7s-look"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="#">Arifo Stylas Dress</a></h4>
-                        <span>$115.00</span>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="#">
-                            <img src="assets/img/product/fashion-colorful/3.jpg" alt="">
-                        </a>
-                        <span>hot</span>
-                        <div class="product-action">
-                            <a class="animate-left" title="Wishlist" href="#">
-                                <i class="pe-7s-like"></i>
-                            </a>
-                            <a class="animate-top" title="Add To Cart" href="#">
-                                <i class="pe-7s-cart"></i>
-                            </a>
-                            <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="pe-7s-look"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="#">Arifo Stylas Dress</a></h4>
-                        <span>$115.00</span>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="#">
-                            <img src="assets/img/product/fashion-colorful/4.jpg" alt="">
-                        </a>
-                        <div class="product-action">
-                            <a class="animate-left" title="Wishlist" href="#">
-                                <i class="pe-7s-like"></i>
-                            </a>
-                            <a class="animate-top" title="Add To Cart" href="#">
-                                <i class="pe-7s-cart"></i>
-                            </a>
-                            <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="pe-7s-look"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="#">Arifo Stylas Dress</a></h4>
-                        <span>$115.00</span>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="#">
-                            <img src="assets/img/product/fashion-colorful/5.jpg" alt="">
-                        </a>
-                        <span>hot</span>
-                        <div class="product-action">
-                            <a class="animate-left" title="Wishlist" href="#">
-                                <i class="pe-7s-like"></i>
-                            </a>
-                            <a class="animate-top" title="Add To Cart" href="#">
-                                <i class="pe-7s-cart"></i>
-                            </a>
-                            <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="pe-7s-look"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="#">Arifo Stylas Dress</a></h4>
-                        <span>$115.00</span>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="#">
-                            <img src="assets/img/product/fashion-colorful/1.jpg" alt="">
-                        </a>
-                        <div class="product-action">
-                            <a class="animate-left" title="Wishlist" href="#">
-                                <i class="pe-7s-like"></i>
-                            </a>
-                            <a class="animate-top" title="Add To Cart" href="#">
-                                <i class="pe-7s-cart"></i>
-                            </a>
-                            <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="pe-7s-look"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="#">Arifo Stylas Dress</a></h4>
-                        <span>$115.00</span>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="#">
-                            <img src="assets/img/product/fashion-colorful/2.jpg" alt="">
-                        </a>
-                        <span>hot</span>
-                        <div class="product-action">
-                            <a class="animate-left" title="Wishlist" href="#">
-                                <i class="pe-7s-like"></i>
-                            </a>
-                            <a class="animate-top" title="Add To Cart" href="#">
-                                <i class="pe-7s-cart"></i>
-                            </a>
-                            <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="pe-7s-look"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="#">Arifo Stylas Dress</a></h4>
-                        <span>$115.00</span>
-                    </div>
-                </div>
+                @endforeach
             </div>
-        </div> --}}
+        </div>
     </div>
 </div>
 

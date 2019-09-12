@@ -12,8 +12,17 @@ Cart
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <h1 class="cart-heading">Cart</h1>
                         @include('messages.msg')
+                        @if(session()->has('error'))
+                            <div class="alert alert-danger">
+                            {{ session()->get('error') }}
+                            </div>
+                        @endif
+                        @if ($errors->has('quantity'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('quantity') }}
+                            </div>
+                        @endif
                         <div class="table-content table-responsive">
-
                             <table>
                                 <thead>
                                     <tr>

@@ -30,10 +30,10 @@
     <form action="{{ route('login') }}" method="POST">
         @csrf
             @if(session()->has('login_error'))
-            <div class="alert alert-danger">
-            {{ session()->get('login_error') }}
-            </div>
-        @endif
+                <div class="alert alert-danger">
+                {{ session()->get('login_error') }}
+                </div>
+            @endif
         <div class="input-group mb-3">
           <input type="text" value="{{ old('identity') }}" name="identity" class="form-control" placeholder="Email or Username" >
           <div class="input-group-append">
@@ -69,7 +69,7 @@
               <a href="{{route('register')}}" class="text-center">Create a new account</a>
            </div>
           <!-- /.col -->
-         
+
         </div>
       </form>
     </div>

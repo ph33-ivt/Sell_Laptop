@@ -17,13 +17,7 @@
                                         @endforeach
                                     </ul>
                                 </li>
-                                <li><a href="#">pages</a>
-                                    <ul class="single-dropdown">
-                                        <li><a href="about-us.html">about us</a></li>
-                                        <li><a href="{{route('login')}}">login</a></li>
-                                        <li><a href="{{route('register')}}">register</a></li>
-                                        <li><a href="{{route('user.cart')}}">cart page</a></li>
-                                    </ul>
+                                <li><a href="#">About Us</a>
                                 </li>
                                 <li><a href="{{route('contact')}}">contact</a></li>
                             </ul>
@@ -94,9 +88,9 @@
                         </ul>
                     </div>
                     <div class="furniture-search">
-                        <form action="#">
-                            <input placeholder="I am Searching for . . ." type="text">
-                            <button>
+                        <form action="{{route('user.search')}}">
+                            <input placeholder="Enter Your key word" type="text" name="product">
+                            <button type="submit">
                                 <i class="ti-search"></i>
                             </button>
                         </form>

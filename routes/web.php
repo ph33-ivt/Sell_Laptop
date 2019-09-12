@@ -52,6 +52,7 @@ Route::group(['prefix' => 'user',
             Route::get('cart','ProductController@cart')->name('cart');
             Route::put('cart/{id}/update', 'ProductController@updatecart')->name('update.cart');
             Route::get('cart/{id}/delete','ProductController@deletecart')->name('delete.cart');
+            Route::get('search','ProductController@search')->name('search');
      // Route::get('/product','ProductController')->name('product');
 });
 

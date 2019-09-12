@@ -26,7 +26,7 @@ class ProductCreateRequest extends FormRequest
     {
         return [
             'category_id' => 'required',
-            'name' => 'required|min:4',
+            'name' => 'required|min:4|unique:products,name',
             'description'=> 'required',
             'price' => 'required|numeric',
             'color' => 'required',
@@ -46,6 +46,7 @@ class ProductCreateRequest extends FormRequest
             'category_id.required' => 'A Category is required',
             'name.required' => 'A Name is required',
             'name.min' => 'Enter name minimum 4 character',
+            'name.unique' => 'product a exits',
             'description.required' => 'A display name is required',
             'price.required' => 'A price is required',
             'price.numeric' => 'Enter price must style number',

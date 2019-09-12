@@ -6,12 +6,12 @@
 @endif
 
 
-@if ($message = Session::get('error'))
+{{-- @if ($message = Session::get('error'))
 <div class="alert alert-danger alert-block">
 	<button type="button" class="close" data-dismiss="alert">×</button>
         <strong>{{ $message }}</strong>
 </div>
-@endif
+@endif --}}
 
 
 @if ($message = Session::get('warning'))
@@ -26,7 +26,7 @@
 	<strong>{{ $message }}</strong>
 </div>
 @endif
-@if ($errors->any())
+{{-- @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -34,5 +34,5 @@
             @endforeach
         </ul>
     </div>
-@endif
+@endif --}}
 
