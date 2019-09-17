@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Laptop Shop | Login Page</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('auth.layouts')
+@section('title', 'Login page')
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }} ">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('css/backend/adminlte.min.css')}}">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-</head>
-<body class="hold-transition register-page">
+@section('content')
 <div class="register-box">
   <div class="register-logo">
     <a href="{{route('login')}}"><b>Login</b></a>
@@ -68,6 +51,11 @@
           <div class="col-6 text-center">
               <a href="{{route('register')}}" class="text-center">Create a new account</a>
            </div>
+           @if (Route::has('password.request'))
+           <a class="btn btn-link" href="{{ route('password.request') }}">
+               {{ __('Forgot Your Password?') }}
+           </a>
+             @endif
           <!-- /.col -->
 
         </div>
@@ -76,13 +64,6 @@
     <!-- /.form-box -->
   </div><!-- /.card -->
 </div>
-<!-- /.register-box -->
+@endsection
 
-<!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-{{-- <script src="{{asset('js/custom.js')}}"></script> --}}
-</body>
-</html>
 

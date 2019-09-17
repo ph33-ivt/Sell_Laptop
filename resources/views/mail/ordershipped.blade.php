@@ -8,8 +8,7 @@
 </head>
 <body>
     <p>Thank you for shopping with us, Your order below:</p>
-    FirstName  :{{$order->firstname}} <br>
-    LastName : {{$order->lastname}} <br>
+    Full Name  :{{$order->name}} <br>
     Email  : {{$order->user_email}} <br>
     Address : {{$order->address}} <br>
     Phone  : {{$order->phone}} <br>
@@ -34,7 +33,7 @@
                 <td>{{$orderDetail->product_name}}</td>
                 <td>{{$orderDetail->price}}</td>
                 <td>{{$orderDetail->quantity}}</td>
-                <td>{{$orderDetail->quantity}}</td>
+                <td>{{$orderDetail->discount}}</td>
             </tr>
             @endforeach
             <tr>

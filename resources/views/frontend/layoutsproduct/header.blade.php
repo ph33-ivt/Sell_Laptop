@@ -48,6 +48,9 @@
                     <div class="header-cart">
                     <a class="icon-cart-furniture" href="{{route('user.cart')}}">
                             <i class="ti-shopping-cart"></i>
+                                @if ($countProducts >0)
+                                    <span>{{ $countProducts }}</span>
+                                @endif
                         </a>
                     </div>
                 </div>
@@ -89,7 +92,7 @@
                     </div>
                     <div class="furniture-search">
                         <form action="{{route('user.search')}}">
-                            <input placeholder="Enter Your key word" type="text" name="product">
+                            <input placeholder="Enter Your key word" type="text" name="product" value="{{isset($search_product) ? $search_product : '' }}">
                             <button type="submit">
                                 <i class="ti-search"></i>
                             </button>

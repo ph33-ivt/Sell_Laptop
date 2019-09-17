@@ -50,7 +50,7 @@ CheckOut
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="country-select">
-                                            <label>Country <span class="required">*</span></label>
+                                            <label>Country <span class="required"></span></label>
                                             <select id="country" name="country">
                                                 <option value="Afganistan">Afghanistan</option>
                                                 <option value="Albania">Albania</option>
@@ -301,38 +301,27 @@ CheckOut
                                              </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="checkout-form-list">
-                                            <label>First Name <span class="required">*</span></label>
-                                        <input type="text" placeholder="First Name" name="firstname" value="{{old('firstname')}}"/>
-                                            @if ($errors->has('firstname'))
+                                            <label>Full Name <span class="required">*</span></label>
+                                        <input type="text" placeholder="First Name" name="name" value="{{$user->name}}"/>
+                                            @if ($errors->has('name'))
                                             <p class="help-block" style="color:red">
-                                                {{ $errors->first('firstname') }}
+                                                {{ $errors->first('name') }}
                                             </p>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="checkout-form-list">
-                                            <label>Last Name <span class="required">*</span></label>
-                                            <input type="text" placeholder="Last Name" name="lastname" value="{{old('lastname')}}"/>
-                                            @if ($errors->has('lastname'))
-                                                <p class="help-block" style="color:red">
-                                                    {{ $errors->first('lastname') }}
-                                                </p>
                                             @endif
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
                                             <label>Company Name</label>
-                                            <input type="text" placeholder="Company" name="company" value="{{old('company')}}"/>
+                                            <input type="text" placeholder="" name="company" value="{{$user->company}}"/>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
                                             <label>Address <span class="required">*</span></label>
-                                            <input type="text" placeholder="Street address" name="address" value="{{old('address')}}"/>
+                                            <input type="text" placeholder="Enter a address" name="address" value="{{$user->address}}"/>
                                             @if ($errors->has('address'))
                                                 <p class="help-block" style="color:red">
                                                     {{ $errors->first('address') }}
@@ -342,31 +331,26 @@ CheckOut
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
-                                            <label>City <span class="required">*</span></label>
-                                            <input type="text" name="city" placeholder="City" value="{{old('city')}}"  />
-                                            @if ($errors->has('city'))
-                                                <p class="help-block" style="color:red">
-                                                    {{ $errors->first('city') }}
-                                                </p>
-                                            @endif
+                                            <label>City <span class="required"></span></label>
+                                            <input type="text" name="city" placeholder="" value="{{$user->city}}"  />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
-                                            <label>State / County <span class="required"></span></label>
-                                            <input type="text" placeholder="State" name="state" value="{{old('state')}}" />
+                                            <label>State  <span class="required"></span></label>
+                                            <input type="text" placeholder="" name="state" value="{{$user->state}}" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
-                                            <label>Postcode / Zip <span class="required"></span></label>
-                                            <input type="text" name="zip" value="{{old('zip')}}" placeholder="zip"  />
+                                            <label> Zip <span class="required"></span></label>
+                                            <input type="text" name="zip" value="{{$user->zip}}" placeholder=""  />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
                                             <label>Phone  <span class="required" >*</span></label>
-                                            <input type="text" name="phone" value="{{old('phone')}}" />
+                                            <input type="text" name="phone" value="{{$user->phone}}" />
                                              @if ($errors->has('phone'))
                                                 <p class="help-block" style="color:red">
                                                     {{ $errors->first('phone') }}
@@ -428,7 +412,7 @@ CheckOut
                                             <option value="Paypal">Paypal</option>
                                         </select>
                                     <div class="order-button-payment">
-                                        <input type="submit" value="Place order" />
+                                        <input type="submit" value="Place order"/>
                                     </div>
                                 </div>
                             </div>

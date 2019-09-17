@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/index';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -53,6 +53,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:4', 'confirmed'],
+            'address' => ['required', 'string', 'min:4'],
+            'phone' => ['required', 'numeric'],
         ]);
     }
 
@@ -64,10 +66,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'address' => $data['address'],
+            'phone' => $data['phone'],
+            'country' => $data['country'],
+            'company' => $data['company'],
+            'city' => $data['city'],
+            'state' => $data['state'],
+            'zip' => $data['zip']
         ]);
           //redirect()->route('login')->with('success','Congratulations! You have successfully registered');
     }

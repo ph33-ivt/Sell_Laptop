@@ -21,7 +21,8 @@ class ProductController extends Controller
     public function index()
     {
         $this->authorize('viewindex',Product::class);
-        $products = Product::orderBy('id','desc')->paginate(8);
+        // $products = Product::orderBy('id','desc')->paginate(8);
+        $products = Product::orderBy('id','desc')->get();
         return view('backend.product.index',compact('products'));
     }
 

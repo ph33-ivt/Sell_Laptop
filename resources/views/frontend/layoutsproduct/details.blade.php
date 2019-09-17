@@ -37,11 +37,6 @@
                 </div>
             </div>
             <div class="col-md-12 col-lg-5 col-12">
-                @if(session()->has('error'))
-                    <div class="alert alert-danger">
-                    {{ session()->get('error') }}
-                    </div>
-                 @endif
                 <div class="product-details-content">
                 <h3>{{$productDetails->name}}  {{$productDetails->cpu}} {{$productDetails->ram}}/{{$productDetails->hdd}} {{ $productDetails->os}} {{$productDetails->card}}</h3>
                     <div class="rating-number">
@@ -60,10 +55,14 @@
                     <span>${{$productDetails->price}}</span>
                     </div>
                     <p>{{$productDetails->description}}</p>
-
-                    <div class="quickview-plus-minus">
-                        <form id="add-cart-form-{{$productDetails->id}}" action="{{route('user.add.cart',$productDetails->id)}}"  method="POST">
+                    <form id="add-cart-form-{{$productDetails->id}}" action="{{route('user.add.cart',$productDetails->id)}}"  method="POST">
                         @csrf
+                        @if(session()->has('add_error'))
+                            <div class="alert alert-danger">
+                            {{ session()->get('add_error') }}
+                            </div>
+                        @endif
+                    <div class="quickview-plus-minus">
                         <input type="hidden" name="product_id" value="{{$productDetails->id}}">
                         <input type="hidden" name="product_name" value="{{$productDetails->name}}">
                         <input type="hidden" name="price" value="{{$productDetails->price}}">
@@ -76,10 +75,10 @@
                             <div class="cart-plus-minus">
                                 <input type="text" value="1" name="quantity" class="cart-plus-minus-box">
                             </div>
-                        </form>
-                            <div class="quickview-btn-cart">
-                            <a class="btn-hover-black" href="javascript:{}" onclick="document.getElementById('add-cart-form-{{$productDetails->id}}').submit();">add to cart</a>
-                            </div>
+                                <div class="quickview-btn-cart">
+                                    <a class="btn-hover-black" href="javascript:{}" onclick="document.getElementById('add-cart-form-{{$productDetails->id}}').submit();"  >add to cart</a>
+                                </div>
+                            </form>
                             <div class="quickview-btn-wishlist">
                                 <a class="btn-hover" href="#"><i class="pe-7s-like"></i></a>
                             </div>

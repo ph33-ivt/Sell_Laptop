@@ -26,7 +26,9 @@
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
   <link rel="stylesheet" href="{{asset('css/backend/custom.css')}}">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -41,7 +43,9 @@
     <a href="{{route('admin.dashboard')}}" class="brand-link">
       {{-- <img src="{{asset('img/backend/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8"> --}}
-      <span class="brand-text font-weight-light">Lapop Shop Admin</span>
+            <img src="{{asset('img/frontend/logo/logo.png')}}" alt="" style="width:80px;height:80px;">
+
+      <span class="brand-text font-weight-light">Admin Laptop</span>
     </a>
 
     <!-- Sidebar -->
@@ -106,5 +110,7 @@
 <!-- AdminLTE for demo purposes -->
 {{-- <script src="{{asset('js/backend/demo.js')}}"></script> --}}
 <script src="{{asset('js/custom.js')}}"></script>
+<script src="{{asset('js/backend/datatable.js')}}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 </body>
 </html>

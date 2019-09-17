@@ -24,7 +24,7 @@ class RoleEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:4',
+            'name' => 'required|min:4|unique:role,name',
             'description' => 'required',
             'permissions' => 'required'
 
@@ -38,6 +38,7 @@ class RoleEditRequest extends FormRequest
             'name.min' => 'Enter name minimum  4 character',
             'description.required' => 'a description is required',
             'permissions.required' => 'a permission is required',
+            'name.unique' => 'a role exists'
 
         ];
     }

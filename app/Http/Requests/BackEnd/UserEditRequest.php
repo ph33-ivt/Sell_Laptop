@@ -25,7 +25,6 @@ class UserEditRequest extends FormRequest
     {
         return [
             'name' => 'required|min:4',
-            'password' => 'required|min:6|confirmed',
             'roles' => 'required'
 
         ];
@@ -36,9 +35,6 @@ class UserEditRequest extends FormRequest
         return [
             'name.required' => 'Enter name required',
             'name.min' => 'Enter name minimum  4 character',
-            'password.required' => 'a password is required',
-            'password.min' => 'Enter password minimum  4 character',
-            'password.confirmed' => 'Enter password confirm same password',
             'roles.required' => 'a role is required'
         ];
     }

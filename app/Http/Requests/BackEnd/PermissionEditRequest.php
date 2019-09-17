@@ -24,7 +24,7 @@ class PermissionEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:4',
+            'name' => 'required|min:4|unique:permissions,name',
             'display_name'=> 'required',
         ];
     }
@@ -34,6 +34,7 @@ class PermissionEditRequest extends FormRequest
             'name.required' => 'A Name is required',
             'name.min' => 'Enter name minimum 4 character',
             'display_name.required' => 'A display name is required',
+            'name.unique' =>'a permission exists '
 
         ];
     }

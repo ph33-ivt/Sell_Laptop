@@ -38,7 +38,8 @@ Route::group(['prefix' => 'admin',
  //User
 Route::get('/account','Auth\LoginController@account')->name('account');
 Route::get('/','IndexController@index')->name('index');
-Route::get('contact','IndexController@contact')->name('contact');
+Route::get('contact','FrontEnd\ProductController@contact')->name('contact');
+Route::post('contact','FrontEnd\ProductController@sendcontact')->name('send.contact');
 
 Route::group(['prefix' => 'user',
             'namespace' => 'FrontEnd',

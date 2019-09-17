@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Category;
+use Illuminate\Support\Facades\Session;
 
 class CategoryController extends Controller
 {
@@ -20,7 +21,15 @@ class CategoryController extends Controller
         $productsOfCategory = Product::where('category_id',$id)->paginate(4);
         //count product of category
         $categories = Category::withCount('products')->orderBy('id')->get();
-        return view('frontend.layoutsproduct.category',compact('productsOfCategory','categories'));
+        if(empty(\Auth::check())){
+            $session_id = Session::get('session_id');
+            $countProducts =  \DB::table('carts')->where('session_id',$session_id)->count();
+        }else
+        {
+            $use_email = \Auth::user()->email;
+            $countProducts =  \DB::table('carts')->where('user_email',$use_email)->count();
+        }
+        return view('frontend.layoutsproduct.category',compact('productsOfCategory','categories','countProducts'));
     }
 
     /**

@@ -174,5 +174,6 @@
         <script src="{{asset('js/frontend/plugins.js')}}"></script>
         <script src="{{asset('js/frontend/main.js')}}"></script>
         <script src="{{asset('js/custom.js')}}"></script>
+        <script src="{{asset('js/frontend/style.js')}}"></script>
     </body>
 </html>

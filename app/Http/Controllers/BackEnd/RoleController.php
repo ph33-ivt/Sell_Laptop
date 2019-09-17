@@ -86,15 +86,17 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RoleEditRequest $request, $id)
+    public function update(Request $request, $id)
     {
+
         $this->authorize('update',Role::class);
         $data = $request->except('_token');
         $role = Role::find($id);
         $role->update($data);
+
         //update permission_role
-        // delete row have role id in table permission_role then create
-    //  DB::table('permission_role')->where('role_id',$id)->delete();
+        // delete row have role id in table permission_role then created
+        //  DB::table('permission_role')->where('role_id',$id)->delete();
         $role->permissions()->detach();
         $role->permissions()->attach($request->permissions);
         return redirect()->route('admin.role.index')->with('success','Update Role success');

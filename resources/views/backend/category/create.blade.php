@@ -23,7 +23,13 @@ Laptop shop| Create Category Product
                             <label for="name">Name</label>
                             <input type="name" class="form-control" id="name" name="name" placeholder="Enter name" value="{{ old('name') }}" required>
                             </div>
+                            @if ($errors->has('name'))
+                            <p class="help-block" style="color:red">
+                                    {{ $errors->first('name') }}
+                            </p>
+                            @endif
                         </div>
+
                         <!-- /.card-body -->
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Create</button>

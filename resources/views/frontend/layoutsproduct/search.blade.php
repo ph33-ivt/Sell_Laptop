@@ -15,7 +15,7 @@ Category
                         <h3 class="sidebar-title">Categories</h3>
                         <div class="sidebar-categories">
                             <ul>
-                                    @foreach ($categories as $category)
+                                @foreach ($categories as $category)
                             <li><a href="{{route('user.category',$category->id)}}">{{$category->name}} <span>{{$category->products_count}}</span></a></li>
                                 @endforeach
                             </ul>
@@ -115,7 +115,7 @@ Category
                             <div class="shop-found-selector">
                                 <div class="shop-found">
                                     @if($productsOfCategory->total() > 0)
-                                        <p><span>{{$productsOfCategory->total()}}</span> Product Found of <span>{{$countProducts}}</span></p>
+                                        <p><span>{{$productsOfCategory->total()}}</span> Product Found of <span>{{$count}}</span></p>
                                     @else
                                     <p> Product Not Found </p>
                                     @endif

@@ -30,19 +30,6 @@ Laptop Shop | Edit User
                                 @endif
                             </div>
                             <div class="form-group">
-                            <label for="password">Password<span style="color:red">*</span></label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="" >
-                            @if ($errors->has('password'))
-                                <p class="help-block" style="color:red">
-                                    {{ $errors->first('password') }}
-                                </p>
-                            @endif
-                            </div>
-                            <div class="form-group">
-                                    <label for="password">Confirm password<span style="color:red">*</span></label>
-                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Retype password" value="" >
-                                </div>
-                            <div class="form-group">
                                 <label>Select Role for User<span style="color:red">*</span></label>
                                 <select multiple class="form-control" name="roles[]">
                                     @foreach ($listRoles as $role)

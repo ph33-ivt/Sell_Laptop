@@ -25,7 +25,7 @@ class UserCreateRequest extends FormRequest
     {
         return [
             'name' => 'required|min:4',
-            'email'=> 'required|max:35|email',
+            'email'=> 'required|max:35|email|unique:user,email',
             'password' => 'required|min:6',
             'roles' => 'required'
 
@@ -36,6 +36,7 @@ class UserCreateRequest extends FormRequest
         return [
             'name.required' => 'a name is required',
             'name.min' => 'Enter name minimum  4 character',
+            'email.unique' => 'a email has exists',
             'email.email' => 'Enter email style email ',
             'email.required' => 'a email is required',
             'email.max' => 'Enter name maximum 35 character',

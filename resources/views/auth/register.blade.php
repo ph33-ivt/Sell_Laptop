@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Laptop Shop |Register Page</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('auth.layouts')
+@section('title', 'Register Page')
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }} ">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('css/backend/adminlte.min.css')}}">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-</head>
-<body class="hold-transition register-page">
+@section('content')
     <div class="register-box">
       <div class="register-logo">
       <a href="{{route('register')}}"><b>Register</b></a>
@@ -36,7 +19,7 @@
                 <div class="input-group-text">
                   <span class="fas fa-user"></span>
                 </div>
-              </div>  
+              </div>
             </div>
             @if ($errors->has('name'))
               <p class="help-block" style="color:red">
@@ -55,9 +38,9 @@
               <p class="help-block" style="color:red">
                       {{ $errors->first('email') }}
               </p>
-              @endif
+            @endif
             <div class="input-group mb-3">
-              <input type="password" class="form-control" placeholder="Password" name="password"  autocomplete="new-password">
+              <input type="password" class="form-control" placeholder="Password" name="password"  autocomplete="new-password" value="{{old('password')}}">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-lock"></span>
@@ -70,18 +53,80 @@
             </p>
             @endif
             <div class="input-group mb-3">
-              <input type="password" class="form-control" placeholder="Retype password" name="password_confirmation"  autocomplete="new-password">
+              <input type="password" class="form-control" placeholder="Retype password" name="password_confirmation"  autocomplete="new-password" value="{{old('password_confirmation')}}">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-lock"></span>
                 </div>
               </div>
             </div>
-            @if ($errors->has('password_confirmation'))
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Phone" name="phone"  >
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
+              </div>
+              @if ($errors->has('phone'))
+              <p class="help-block" style="color:red">
+                      {{ $errors->first('phone') }}
+              </p>
+              @endif
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Country" name="country" >
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Company" name="company" >
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Address" name="address" >
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
+            </div>
+            @if ($errors->has('address'))
             <p class="help-block" style="color:red">
-                    {{ $errors->first('password_confirmation') }}
+                    {{ $errors->first('address') }}
             </p>
             @endif
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="City" name="city" >
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="State" name="state" >
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Zip" name="zip" >
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
+            </div>
+
             <div class="row">
               <div class="col-12">
                 <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
@@ -95,15 +140,5 @@
         <!-- /.form-box -->
       </div><!-- /.card -->
     </div>
-    <!-- /.register-box -->
-    <!-- jQuery -->
-<!-- /.register-box -->
-
-<!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('js/custom.js')}}"></script>
-</body>
-</html>
+@endsection
 

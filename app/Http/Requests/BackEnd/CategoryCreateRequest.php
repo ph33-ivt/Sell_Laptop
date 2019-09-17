@@ -24,7 +24,7 @@ class CategoryCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:4',
+            'name' => 'required|min:4|unique:categories,name',
 
         ];
     }
@@ -33,6 +33,7 @@ class CategoryCreateRequest extends FormRequest
         return [
             'name.required' => 'A Name is required',
             'name.min' => 'Enter name minimum 4 character',
+            'name.unique' => 'a category has exists',
         ];
     }
 }

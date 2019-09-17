@@ -47,12 +47,13 @@ class AuthServiceProvider extends ServiceProvider
         //Gate::resource('roles','App\Policies\RolePolicy');
         Gate::define('isAdmin', function ($user) {
             foreach ($user->roles as $role) {
-                if( $role->id != 5)
-                {
+                if($role->id != 5)
+                 {
                     return true;
-                }
-                return false;
+                 }
+
             }
+            return false;
           });
     }
 }

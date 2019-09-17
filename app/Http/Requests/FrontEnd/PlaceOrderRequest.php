@@ -24,11 +24,8 @@ class PlaceOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'country' => 'required',
-            'firstname' => 'required',
-            'lastname' => 'required',
+            'name' => 'required',
             'address' => 'required',
-            'city' => 'required',
             'phone' => 'required',
 
         ];
@@ -36,11 +33,8 @@ class PlaceOrderRequest extends FormRequest
     public function messages()
     {
         return [
-            'country.required' => 'A country is required',
-            'firstname.required' => 'A firstname is required',
-            'lastname.required' => 'A lastname is required',
+            'name.required' => 'A firstname is required',
             'address.required' => 'A address is required',
-            'city.required' => 'A city is required',
             'phone.required' => 'A phone is required',
         ];
     }

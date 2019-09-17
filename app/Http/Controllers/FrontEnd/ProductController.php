@@ -11,11 +11,13 @@ use App\ProductsImages;
 use Auth;
 use App\Cart;
 use App\Order;
+use App\User;
 use Illuminate\Support\Facades\Session;
 use DB;
 use Symfony\Component\CssSelector\Parser\Shortcut\ElementParser;
 use App\OrderDetail;
 use App\Mail\OrderShipped;
+use App\Mail\Contact;
 use App\Http\Requests\FrontEnd\PlaceOrderRequest;
 use App\Http\Requests\FrontEnd\AddtoCartRequest;
 use App\Http\Requests\FrontEnd\UpdateCartRequest;
@@ -33,7 +35,16 @@ class ProductController extends Controller
         $productDetailsImageall = ProductsImages::where('product_id',$id)->pluck('image');
         //relate product
         $productRelates = Product::where('id','<>',$id)->where('category_id',$productDetails->category_id)->get();
-        return view('frontend.layoutsproduct.details',compact('productDetails','productDetailsImage','productDetailsImageall','categories','productRelates'));
+        //get count product  in cart
+        if(empty(\Auth::check())){
+            $session_id = Session::get('session_id');
+            $countProducts =  \DB::table('carts')->where('session_id',$session_id)->count();
+        }else
+        {
+            $use_email = Auth::user()->email;
+            $countProducts =  \DB::table('carts')->where('user_email',$use_email)->count();
+        }
+        return view('frontend.layoutsproduct.details',compact('productDetails','productDetailsImage','productDetailsImageall','categories','productRelates','countProducts'));
     }
 
     public function addcart(AddtoCartRequest $request, $id)
@@ -65,39 +76,46 @@ class ProductController extends Controller
         else
             $productCount = \DB::table('carts')->where(['product_id'=>$data['product_id'],'user_email' => $data['user_email']])->count();
         // check quantity with stock quantity table
-        if($productCount>0){
+        if($productCount>0)
+        {
             if(empty(Auth::check()))
-            {
-                //get quantity in exists in cart
-                $quantity = \DB::table('carts')->where(['product_id'=>$data['product_id'],'session_id' => $data['session_id']])->pluck('quantity')->get(0);
+                {
+                    //get quantity in exists in cart
+                    $quantity = \DB::table('carts')->where(['product_id'=>$data['product_id'],'session_id' => $data['session_id']])->pluck('quantity')->get(0);
+
+                    if(($quantity+$request->quantity) > ($product->quantity))
+                    {
+                        return redirect()->back()->with('add_error','Please check quantity is more than product stock ');
+                    }else
+                    \DB::table('carts')->where(['product_id'=>$data['product_id'],'session_id' => $data['session_id']])->update(['quantity' => $data['quantity']+ $quantity]);
+                    return redirect()->route('user.cart')->with('success','Product has been added in Cart');
+
+                }
+            else
+                {
+                $quantity = \DB::table('carts')->where(['product_id'=> $data['product_id'],'user_email' => $data['user_email']])->pluck('quantity')->get(0);
                 if(($quantity+$request->quantity) > ($product->quantity))
                 {
-                    return redirect()->back()->with('error','Please check quantity is more than product stock ');
-                }else
-                \DB::table('carts')->where(['product_id'=>$data['product_id'],'session_id' => $data['session_id']])->update(['quantity' => $data['quantity']+ $quantity]);
-            }
-                else{
-                $quantity = \DB::table('carts')->where(['product_id'=>$data['product_id'],'user_email' => $data['user_email']])->pluck('quantity')->get(0);
-                if(($quantity+$request->quantity) > ($product->quantity))
-                {
-                    return redirect()->back()->with('error','Please check quantity is more than product stock ');
+                    return redirect()->back()->with('add_error','Please check quantity is more than product stock ');
                 }else
                 \DB::table('carts')->where(['product_id'=>$data['product_id'],'user_email' => $data['user_email']])->update(['quantity' => $data['quantity']+ $quantity]);
+                return redirect()->route('user.cart')->with('success','Product has been added in Cart');
                 }
-            }
-            elseif($request->quantity < $product->quantity)//if quantity add < stock ,  insert new item into table cart
+        }
+            elseif( $request->quantity < $product->quantity)//if quantity add < stock ,  insert new item into table cart
             {
                 Cart::insert($data);
+                return redirect()->route('user.cart')->with('success','Product has been added in Cart');
             }else
             {
-                return redirect()->back()->with('error','Please check quantity is more than product stock ');
-
+                return redirect()->back()->with('add_error','Please check quantity is more than product stock ');
             }
-        return redirect()->route('user.cart')->with('success','Product has been added in Cart');
+
     }
 
     public function cart()
     {
+
         $categories = Category::all();
         if(Auth::check()){
             $user_email = Auth::user()->email;
@@ -115,8 +133,16 @@ class ProductController extends Controller
               $productDetailsImage = Product::where('id',$product->product_id)->pluck('image')->first();
               $userCarts[$key]->image  = $productDetailsImage;
           }
-          //$productDetailsImage = ProductsImages::where('product_id',$id)->pluck('image')->first();
-        return view('frontend.layoutsproduct.cart',compact('userCarts','categories'));
+           //get count product  in cart
+        if(empty(\Auth::check())){
+            $session_id = Session::get('session_id');
+            $countProducts =  \DB::table('carts')->where('session_id',$session_id)->count();
+        }else
+        {
+            $use_email = Auth::user()->email;
+            $countProducts =  \DB::table('carts')->where('user_email',$use_email)->count();
+        }
+        return view('frontend.layoutsproduct.cart',compact('userCarts','categories','countProducts'));
     }
 
     public function deletecart($id)
@@ -149,7 +175,17 @@ class ProductController extends Controller
 
         //get cart table of user login
         $userCarts = DB::table('carts')->where(['user_email' => $user_email])->get();
-        return view('frontend.layoutsproduct.checkout',compact('user_email','user_id','userCarts','categories'));
+        $user = User::find($user_id);
+         //get count product  in cart
+         if(empty(\Auth::check())){
+            $session_id = Session::get('session_id');
+            $countProducts =  \DB::table('carts')->where('session_id',$session_id)->count();
+        }else
+        {
+            $use_email = Auth::user()->email;
+            $countProducts =  \DB::table('carts')->where('user_email',$use_email)->count();
+        }
+        return view('frontend.layoutsproduct.checkout',compact('user','userCarts','categories','countProducts'));
     }
 
     public function placeorder(PlaceOrderRequest $request)
@@ -157,7 +193,7 @@ class ProductController extends Controller
 
         $user_id = Auth::user()->id;
         $user_email = Auth::user()->email;
-        $data = $request->only('country','firstname','lastname','company','address','city','state','zip','phone','payment_method','grand_total');
+        $data = $request->only('country','name','company','address','city','state','zip','phone','payment_method','grand_total');
         $data['user_id'] = $user_id;
         $data['user_email'] = $user_email;
         $data['status'] ='';
@@ -188,13 +224,23 @@ class ProductController extends Controller
             return redirect()->route('user.thanks');
         }
     }
+
     public function thanks()
     {
         $categories = Category::all();
         $user_email = Auth::user()->email;
         //delete  userCarts in Cart table
         $userCarts = DB::table('carts')->where(['user_email' => $user_email])->delete();
-        return view('frontend.layoutsproduct.thanks',compact('categories'));
+         //get count product  in cart
+         if(empty(\Auth::check())){
+            $session_id = Session::get('session_id');
+            $countProducts =  \DB::table('carts')->where('session_id',$session_id)->count();
+        }else
+        {
+            $use_email = Auth::user()->email;
+            $countProducts =  \DB::table('carts')->where('user_email',$use_email)->count();
+        }
+        return view('frontend.layoutsproduct.thanks',compact('categories','countProducts'));
     }
 
     public function search(Request $request)
@@ -208,10 +254,39 @@ class ProductController extends Controller
     //    {
         $categories = Category::withCount('products')->orderBy('id')->get();
         //count total products
-        $countProducts = DB::table('products')->count();
-        return view('frontend.layoutsproduct.search',compact('categories','productsOfCategory','countProducts'));
-    //    }else
-    //    return 1;
+        $count = DB::table('products')->count();
+         //get count product  in cart
+         if(empty(\Auth::check())){
+            $session_id = Session::get('session_id');
+            $countProducts =  \DB::table('carts')->where('session_id',$session_id)->count();
+        }else
+        {
+            $use_email = Auth::user()->email;
+            $countProduct =  \DB::table('carts')->where('user_email',$use_email)->count();
+        }
+        return view('frontend.layoutsproduct.search',compact('categories','productsOfCategory','countProducts','search_product','count'));
+    }
 
+    public function contact()
+    {
+        $categories = Category::all();
+         //get count product  in cart
+         if(empty(\Auth::check())){
+            $session_id = Session::get('session_id');
+            $countProducts =  \DB::table('carts')->where('session_id',$session_id)->count();
+        }else
+        {
+            $use_email = Auth::user()->email;
+            $countProducts =  \DB::table('carts')->where('user_email',$use_email)->count();
+        }
+        return view('frontend.layoutsproduct.contact',compact('categories','countProducts'));
+    }
+
+    public function sendcontact(Request $request)
+    {
+        $data = $request->all();
+        //code send mail
+        \Mail::to('nguyennhdn@gmail.com')->send(new Contact($data['name'],$data['email'],$data['telephone'],$data['subject'],$data['commnet']));
+         return redirect()->back()->with('success', 'Send success');
     }
 }
