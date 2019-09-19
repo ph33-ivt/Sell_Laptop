@@ -24,7 +24,7 @@ class RoleCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:4|unique:role,name',
+            'name' => 'required|min:4|unique:roles,name',
             'description'=> 'required',
             'permissions' => 'required',
 

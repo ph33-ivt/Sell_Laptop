@@ -41,13 +41,13 @@ Cart
                                     @endphp
                                     @foreach ($userCarts as $cart)
                                         <tr>
-                                        <form id ="user-update-cart-{{$cart->id}}" action="{{route('user.update.cart',$cart->id)}}" method="post" >
+                                        <form id ="user-update-cart-{{$cart->product_id}}" action="{{route('user.update.cart',$cart->product_id)}}" method="post" >
                                                 @csrf
                                                 @method('put')
                                                 <input type="hidden" name="product_id" value="{{$cart->product_id }}">
                                                 <input type="hidden" name="product_name" value="{{$cart->product_name  }}">
                                                 <input type="hidden" name="price" value="{{$cart->price}}">
-                                            <td class="product-remove" style="width: 10px;height:10px;"><a href="javascript:document.getElementById('user-update-cart-{{$cart->id}}').submit();" ><i class="pe-7s-repeat" ></i></a></td>
+                                            <td class="product-remove" style="width: 10px;height:10px;"><a href="javascript:document.getElementById('user-update-cart-{{$cart->product_id}}').submit();" ><i class="pe-7s-repeat" ></i></a></td>
                                             <td class="product-remove"><a href="{{route('user.delete.cart',$cart->id)}}"><i class="pe-7s-close"></i></a></td>
                                             <td class="product-thumbnail">
                                             <a href="#"><img src= "{{asset('img/frontend/product/all/'.$cart->image)}}" alt="" style="width:85px;height:101px;"></a>

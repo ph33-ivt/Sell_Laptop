@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Role;
+use App\Permission;
 use DB;
 
 
@@ -41,7 +42,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\UserCreateRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(UserCreateRequest $request)

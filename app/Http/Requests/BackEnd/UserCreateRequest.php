@@ -25,9 +25,11 @@ class UserCreateRequest extends FormRequest
     {
         return [
             'name' => 'required|min:4',
-            'email'=> 'required|max:35|email|unique:user,email',
+            'email'=> 'required|max:35|email|unique:users,email',
             'password' => 'required|min:6',
-            'roles' => 'required'
+            'roles' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
 
         ];
     }
@@ -42,8 +44,9 @@ class UserCreateRequest extends FormRequest
             'email.max' => 'Enter name maximum 35 character',
             'password.required' => 'a password is required',
             'password.min' => 'Enter password minimum  4 character',
-            'roles.required' => 'a role is required'
-
+            'roles.required' => 'a role is required',
+            'phone.required' => 'a phone is required',
+            'address.required' => 'a address is required'
         ];
     }
 }

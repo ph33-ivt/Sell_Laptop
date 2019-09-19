@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\User;
 use App\Role;
+use Auth;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy

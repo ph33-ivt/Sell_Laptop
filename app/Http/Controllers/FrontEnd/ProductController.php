@@ -155,8 +155,8 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $data = $request->except('_token','_method');
-        if($request->quantity < $product->quantity){
-            \DB::table('carts')->where('id',$id)->update($data);
+        if($request->quantity <= $product->quantity){
+            \DB::table('carts')->where('product_id',$id)->update($data);
             return redirect()->route('user.cart')->with('success','Product has been update in Cart');
         }else{
             return redirect()->back()->with('error','Please check quantity is more than product stock ');

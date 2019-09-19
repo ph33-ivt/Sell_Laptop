@@ -25,8 +25,9 @@ class UserEditRequest extends FormRequest
     {
         return [
             'name' => 'required|min:4',
-            'roles' => 'required'
-
+            'roles' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
         ];
     }
 
@@ -35,7 +36,9 @@ class UserEditRequest extends FormRequest
         return [
             'name.required' => 'Enter name required',
             'name.min' => 'Enter name minimum  4 character',
-            'roles.required' => 'a role is required'
+            'roles.required' => 'a role is required',
+            'phone.required' => 'a phone is required',
+            'address.required' => 'a address is required'
         ];
     }
 }

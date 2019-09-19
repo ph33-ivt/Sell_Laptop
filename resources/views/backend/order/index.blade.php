@@ -18,8 +18,7 @@ Laptop Shop | Order
             <thead>
             <tr style=" color:red;background-color: #3e8409;">
               <th>Order ID</th>
-              <th>FirstName</th>
-              <th>LastName</th>
+              <th>Name</th>
               <th>Country</th>
               <th>Address</th>
               <th>City</th>
@@ -33,8 +32,7 @@ Laptop Shop | Order
                 @foreach ($orders as $order)
             <tr>
                 <td>{{$order->id}}</td>
-                <td>{{$order->firstname}}</td>
-                <td>{{$order->lastname}}</td>
+                <td>{{$order->name}}</td>
                 <td>{{$order->country}}</td>
                 <td>{{$order->address}}</td>
                 <td>{{$order->city}}</td>

@@ -19,8 +19,7 @@ Laptop Shop | Order Detail
                                 <div class="order-id">
                                     <label for="">Order Id : {{$order->id}}</label><br>
                                     <label for="">Email  : {{$order->user_email}}</label><br>
-                                    <label for="">FirstName  : {{$order->firstname}}</label><br>
-                                    <label for="">LastName  : {{$order->lastname}}</label><br>
+                                    <label for="">Name  : {{$order->name}}</label><br>
                                     <label for="">Payment_method  : {{$order->payment_method}}</label><br>
                                 </div>
                             </div>

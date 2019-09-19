@@ -44,7 +44,8 @@ class RoleController extends Controller
      */
     public function store(RoleCreateRequest $request)
     {
-        $this->authorize('create',Role::class);
+       $this->authorize('create',Role::class);
+       dd($request->all());
         $data = $request->except('_token');
         $role = Role::create($data);
         //insert table permission role
