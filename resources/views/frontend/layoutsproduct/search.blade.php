@@ -1,7 +1,7 @@
 @extends('frontend.layoutsproduct.design')
 
 @section('title')
-Category
+Search
 @endsection
 
 @section('content')
@@ -114,17 +114,19 @@ Category
                         <div class="shop-bar pb-60">
                             <div class="shop-found-selector">
                                 <div class="shop-found">
-                                    @if($productsOfCategory->total() > 0)
+                                    @if( $productsOfCategory->total()>0 )
                                         <p><span>{{$productsOfCategory->total()}}</span> Product Found of <span>{{$count}}</span></p>
-                                    @else
-                                    <p> Product Not Found </p>
-                                    @endif
+                                   @else
+                                     <p> Product Not Found </p>
+                                     @endif
                                 </div>
                             </div>
                         </div>
+
                         <div class="shop-product-content tab-content">
                             <div id="grid-sidebar12" class="tab-pane fade active show">
                                 <div class="row">
+
                                     @foreach ($productsOfCategory as $product)
                                     <div class="col-md-12 col-xl-6">
                                         <div class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60">
@@ -155,7 +157,7 @@ Category
                     </div>
                 </div>
                 <div class=" mt-10 text-center">
-                    {{ $productsOfCategory->links() }}
+                        {{ $productsOfCategory->links() }}
                 </div>
             </div>
         </div>

@@ -82,7 +82,6 @@ class ProductController extends Controller
                 {
                     //get quantity in exists in cart
                     $quantity = \DB::table('carts')->where(['product_id'=>$data['product_id'],'session_id' => $data['session_id']])->pluck('quantity')->get(0);
-
                     if(($quantity+$request->quantity) > ($product->quantity))
                     {
                         return redirect()->back()->with('add_error','Please check quantity is more than product stock ');
@@ -247,9 +246,13 @@ class ProductController extends Controller
     {
         $data = $request->only('product');
         $search_product = $data['product'];
-        $productsOfCategory = Product::whereHas('category', function($query) use($search_product) {
-        $query->where('name', 'like', '%'.$search_product.'%');
-        })->orWhere('name','LIKE','%'.$search_product.'%')->paginate(4)->appends(Input::except('page'));
+        if($search_product == null){
+            return redirect()->back();
+        }else{
+            $productsOfCategory = Product::whereHas('category', function($query) use($search_product) {
+            $query->where('name', 'like', '%'.$search_product.'%');
+            })->orWhere('name','LIKE','%'.$search_product.'%')->paginate(4)->appends(Input::except('page'));
+        }
     //    if($productsOfCategory->total() > 0)
     //    {
         $categories = Category::withCount('products')->orderBy('id')->get();
@@ -262,7 +265,7 @@ class ProductController extends Controller
         }else
         {
             $use_email = Auth::user()->email;
-            $countProduct =  \DB::table('carts')->where('user_email',$use_email)->count();
+            $countProducts =  \DB::table('carts')->where('user_email',$use_email)->count();
         }
         return view('frontend.layoutsproduct.search',compact('categories','productsOfCategory','countProducts','search_product','count'));
     }
@@ -285,7 +288,6 @@ class ProductController extends Controller
     public function sendcontact(Request $request)
     {
         $data = $request->all();
-        //code send mail
         \Mail::to('nguyennhdn@gmail.com')->send(new Contact($data['name'],$data['email'],$data['telephone'],$data['subject'],$data['commnet']));
          return redirect()->back()->with('success', 'Send success');
     }

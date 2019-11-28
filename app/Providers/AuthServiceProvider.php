@@ -9,6 +9,7 @@ use App\Policies\RolePolicy;
 use App\Policies\ProductPolicy;
 use App\Policies\CategoryPolicy;
 use Illuminate\Support\Facades\Gate;
+use App\Policies\OrderPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Role;
 use App\User;
@@ -16,7 +17,7 @@ use App\Permission;
 use App\Product;
 use App\Category;
 use App\Order;
-use App\Policies\OrderPolicy;
+
 
 class AuthServiceProvider extends ServiceProvider
 {

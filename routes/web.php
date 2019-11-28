@@ -16,6 +16,9 @@
 // });
 
 Auth::routes();
+//Login with facebook and google
+Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
+Route::get('/callback/{provider}', 'SocialController@callback');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
