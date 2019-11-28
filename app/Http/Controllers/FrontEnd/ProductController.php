@@ -29,12 +29,13 @@ class ProductController extends Controller
 
     public function details($id)
     {
+        
         $categories = Category::all();
         $productDetails = Product::find($id);
         $productDetailsImage = ProductsImages::where('product_id',$id)->pluck('image')->first();
         $productDetailsImageall = ProductsImages::where('product_id',$id)->pluck('image');
         //relate product
-        $productRelates = Product::where('id','<>',$id)->where('category_id',$productDetails->category_id)->get();
+        $productRelates = Product::where('id','<>',$id)->where('category_id' ,$productDetails->category_id)->get();
         //get count product  in cart
         if(empty(\Auth::check())){
             $session_id = Session::get('session_id');
@@ -44,7 +45,7 @@ class ProductController extends Controller
             $use_email = Auth::user()->email;
             $countProducts =  \DB::table('carts')->where('user_email',$use_email)->count();
         }
-        return view('frontend.layoutsproduct.details',compact('productDetails','productDetailsImage','productDetailsImageall','categories','productRelates','countProducts'));
+        return view('frontend.layoutsproduct.details',compact('productDetails' ,'productDetailsImage','productDetailsImageall','categories','productRelates','countProducts'));
     }
 
     public function addcart(AddtoCartRequest $request, $id)
