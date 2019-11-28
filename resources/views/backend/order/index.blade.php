@@ -55,12 +55,13 @@ Laptop Shop | Order
                                                     <option value="Shipped" @if ($order->status == 'Shipped') selected @endif>Shipped</option>
                                                     <option value="Delivered" @if ($order->status == 'Delivered') selected @endif>Delivered</option>
                                                 </select>
-                                            @endcan
+
                                             </div>
                                         </td>
                                         <td>
                                             <input type="submit" value="Update">
                                         </td>
+                                        @endcan
                                     </tr>
                                 </tbody>
                             </table>

@@ -43,9 +43,9 @@ Laptop Shop | List User
                     @csrf
                     @method('DELETE')
                 </form>
-                @can('delete', App\User::class)
+                {{-- @can('delete', App\User::class) --}}
                 <a href="javascript:document.getElementById('delete-form-{{$user->id}}').submit();" onclick=" return confirm('Are you sure?') "><i class="far fa-trash-alt"></i></a>
-                @endcan
+                {{-- @endcan --}}
             </td>
             </tr>
                 @endforeach

@@ -45,11 +45,19 @@ class RoleController extends Controller
     public function store(RoleCreateRequest $request)
     {
        $this->authorize('create',Role::class);
-       dd($request->all());
         $data = $request->except('_token');
-        $role = Role::create($data);
+        DB::beginTransaction();
+        try {
+            $role = Role::create($data);
+            $role->permissions()->attach($request->permissions);
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw new Exception($e->getMessage());
+        }
+
         //insert table permission role
-        $role->permissions()->attach($request->permissions);
+
         return redirect()->route('admin.role.index')->with('success','Created role success');
     }
 

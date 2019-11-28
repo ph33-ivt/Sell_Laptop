@@ -59,6 +59,15 @@
           <!-- /.col -->
 
         </div>
+        <div class="social-auth-links text-center">
+                <p>- OR -</p>
+                <a href="{{ url('/auth/redirect/facebook')}}" class="btn btn-block btn-primary">
+                <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                </a>
+                <a href="{{url('/auth/redirect/google')}}" class="btn btn-block btn-danger">
+                <i class="fab fa-google-plus"></i> Sign in using Google
+                </a>
+            </div>
       </form>
     </div>
     <!-- /.form-box -->
