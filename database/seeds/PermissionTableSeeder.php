@@ -116,6 +116,6 @@ class PermissionTableSeeder extends Seeder
             ],
 
         ];
-        DB::table('Permissions')->insert($permissions);
+        DB::table('permissions')->insert($permissions);
     }
 }
