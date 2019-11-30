@@ -64,8 +64,8 @@
                     <div class="col-12 text-center">
                         <div class="copyright">
                             <p>
-                                Copyright ©
-                                <a href="{{route('index')}}">Laptop Sell</a> 2019 . All Right Reserved.
+                                Design by Hoàng Nguyên
+                                <a href="{{route('index')}}">Laptop Sell</a>@php date('Y') @endphp. All Right Reserved.
                             </p>
                         </div>
                     </div>

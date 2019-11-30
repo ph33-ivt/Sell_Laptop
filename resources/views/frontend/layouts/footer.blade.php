@@ -11,8 +11,8 @@
                                     <span>Address:</span>
                                 </div>
                                 <div class="footer-info-content2">
-                                    <p>31 Le Duan
-                                        <br>Hai Chau , Da Nang</p>
+                                    <p>374 Hung vuong
+                                        <br>Dak Ha , Kon Tum</p>
                                 </div>
                             </div>
                             <div class="footer-address-electro">
@@ -20,14 +20,12 @@
                                     <span>Phone:</span>
                                 </div>
                                 <div class="footer-info-content2">
-                                    <p>+11 (019) 2518 4203
-                                        <br>+11 (251) 2223 3353</p>
+                                    <p>0337548422
                                 </div>
                             </div>
                             <div class="footer-address-electro">
                                 <div class="footer-info-content2">
-                                    <p><a href="#">domain@mail.com</a>
-                                        <br><a href="#">company@domain.info</a></p>
+                                    <p><a href="#">nguyennhdn@mail.com</a>
                                 </div>
                             </div>
                         </div>
@@ -130,7 +128,7 @@
                 <div class="col-lg-6 col-md-7">
                     <div class="copyright f-right mrg-5">
                         <p>
-                            Copyright ©
+                            Design by Hoang Nguyen
                         <a href="{{route('index')}}">LaptopSell</a> 2019 . All Right Reserved.
                         </p>
                     </div>
